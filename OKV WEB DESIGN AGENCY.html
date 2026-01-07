@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OKV Tech | Intelligent Systems & Exceptional Design</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-bg-primary: #0f172a; 
+            --color-bg-secondary: #1e293b;
+            --color-text-primary: #f8fafc;
+            --color-accent-main: #3b82f6;
+            --color-accent-secondary: #a855f7;
+            --color-whatsapp: #25d366;
+        }
+
+        .light {
+            --color-bg-primary: #f1f5f9;
+            --color-bg-secondary: #ffffff;
+            --color-text-primary: #0f172a;
+            --color-accent-main: #1d4ed8;
+            --color-accent-secondary: #4f46e5;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--color-bg-primary);
+            color: var(--color-text-primary);
+            scroll-behavior: smooth;
+        }
+
+        .icon-gradient {
+            background-image: linear-gradient(45deg, var(--color-accent-main), var(--color-accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-glow-overlay {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            pointer-events: none;
+            background: radial-gradient(circle at 20% 30%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 70%, rgba(168, 85, 247, 0.1) 0%, transparent 50%);
+        }
+
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .project-image-container { overflow: hidden; height: 240px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .project-image { transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1); width: 100%; height: 100%; object-fit: cover; }
+        .project-card:hover .project-image { transform: scale(1.1); }
+        
+        .whatsapp-float {
+            position: fixed; width: 60px; height: 60px; bottom: 30px; right: 30px;
+            background-color: var(--color-whatsapp); color: #FFF; border-radius: 50px;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3); z-index: 100; transition: 0.3s;
+        }
+        .whatsapp-float:hover { transform: translateY(-5px) scale(1.1); }
+
+        #mobile-menu {
+            transition: all 0.3s ease-in-out;
+            max-height: 0;
+            overflow: hidden;
+        }
+        #mobile-menu.open {
+            max-height: 400px;
+            padding-bottom: 1.5rem;
+        }
+
+        .form-input {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        .form-input:focus {
+            outline: none;
+            border-color: var(--color-accent-main);
+            box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+        }
+    </style>
+</head>
+<body>
+
+    <header class="sticky top-0 z-50 bg-[var(--color-bg-primary)]/80 backdrop-blur-md border-b border-slate-800 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#home" class="text-2xl font-extrabold icon-gradient tracking-tighter">
+                OKV<span class="text-[var(--color-text-primary)]">Tech</span>
+            </a>
+            
+            <nav class="hidden md:flex space-x-8 items-center">
+                <a href="#home" class="text-sm font-medium hover:text-[var(--color-accent-main)] transition">Home</a>
+                <a href="#about" class="text-sm font-medium hover:text-[var(--color-accent-main)] transition">About</a>
+                <a href="#services" class="text-sm font-medium hover:text-[var(--color-accent-main)] transition">Services</a>
+                <a href="#pricing" class="text-sm font-medium hover:text-[var(--color-accent-main)] transition">Pricing</a>
+                <a href="#projects" class="text-sm font-medium hover:text-[var(--color-accent-main)] transition">Projects</a>
+                <a href="#get-in-touch" class="px-5 py-2 rounded-full bg-blue-600/20 text-blue-400 border border-blue-500/30 text-sm font-bold hover:bg-blue-600 hover:text-white transition">Start Project</a>
+            </nav>
+
+            <div class="flex items-center gap-4">
+                <button id="theme-toggle" class="p-2 rounded-lg bg-slate-800/50 border border-slate-700">
+                    <i data-lucide="sun" class="w-5 h-5 dark:hidden"></i>
+                    <i data-lucide="moon" class="w-5 h-5 hidden dark:block"></i>
+                </button>
+                
+                <button id="menu-toggle" class="md:hidden p-2 text-slate-400 hover:text-white" aria-label="Toggle Menu">
+                    <i data-lucide="menu" id="menu-icon" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="md:hidden px-6 bg-[var(--color-bg-primary)] border-b border-slate-800">
+            <nav class="flex flex-col space-y-4">
+                <a href="#home" class="mobile-link text-lg font-medium">Home</a>
+                <a href="#about" class="mobile-link text-lg font-medium">About</a>
+                <a href="#services" class="mobile-link text-lg font-medium">Services</a>
+                <a href="#pricing" class="mobile-link text-lg font-medium">Pricing</a>
+                <a href="#projects" class="mobile-link text-lg font-medium">Projects</a>
+                <a href="#get-in-touch" class="mobile-link text-lg font-bold text-blue-400">Start Project</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="home" class="relative pt-20 pb-32 overflow-hidden">
+            <div class="hero-glow-overlay"></div>
+            <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center relative z-10">
+                <div class="text-left">
+                    <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 mb-6">
+                        <span class="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
+                        <span class="text-xs font-bold text-blue-400 uppercase tracking-widest">Enterprise Digital Solutions</span>
+                    </div>
+                    <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight leading-[1.1] mb-8">
+                        Intelligent <span class="icon-gradient">Systems.</span><br>
+                        Exceptional Design.
+                    </h1>
+                    <p class="text-xl text-slate-400 mb-10 max-w-xl leading-relaxed">
+                        We design high-fidelity, AI-integrated platforms for high-ticket clients. Scalable architecture for education, healthcare, and real estate.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#get-in-touch" class="bg-[var(--color-accent-main)] hover:shadow-blue-500/40 shadow-xl text-white font-bold py-4 px-10 rounded-xl transition-all">
+                            Discuss Your Project
+                        </a>
+                        <a href="#projects" class="bg-white/5 hover:bg-white/10 border border-white/10 font-bold py-4 px-10 rounded-xl transition-all">
+                            Featured Work
+                        </a>
+                    </div>
+                </div>
+
+                <div class="relative">
+                    <div class="glass-card rounded-2xl p-2 shadow-2xl transform lg:rotate-2 hover:rotate-0 transition-transform duration-700">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1400&auto=format&fit=crop" 
+                             alt="OKV Tech Enterprise Dashboard" 
+                             class="rounded-xl shadow-inner w-full">
+                    </div>
+                    <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-blue-500/10 blur-3xl rounded-full"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="py-24 max-w-7xl mx-auto px-6 border-t border-slate-800/50">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="order-2 lg:order-1">
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1200&auto=format&fit=crop" 
+                         alt="Strategy & Planning" 
+                         class="rounded-3xl shadow-2xl border border-slate-700/50">
+                </div>
+                <div class="order-1 lg:order-2">
+                    <span class="text-blue-500 font-bold uppercase tracking-widest text-sm">Our Approach</span>
+                    <h2 class="text-4xl font-bold mt-4 mb-6">Designed for <span class="icon-gradient">Performance</span></h2>
+                    <p class="text-slate-400 text-lg leading-relaxed mb-6">
+                        At OKV Tech, we bridge the gap between complex technology and intuitive user experiences. Our development process focuses on scalability, security, and high-conversion layouts.
+                    </p>
+                    <ul class="space-y-4">
+                        <li class="flex items-center gap-3 text-slate-300"><i data-lucide="check-circle" class="text-blue-500 w-5 h-5"></i> Strategy-First Discovery</li>
+                        <li class="flex items-center gap-3 text-slate-300"><i data-lucide="check-circle" class="text-blue-500 w-5 h-5"></i> Future-Proof AI Integration</li>
+                        <li class="flex items-center gap-3 text-slate-300"><i data-lucide="check-circle" class="text-blue-500 w-5 h-5"></i> Conversion-Focused UI/UX</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="services" class="py-24 bg-slate-900/40">
+            <div class="max-w-7xl mx-auto px-6 text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4">Core <span class="icon-gradient">Expertise</span></h2>
+                <p class="text-slate-400 max-w-2xl mx-auto">Specialized digital systems for industries that demand reliability and scale.</p>
+            </div>
+            <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-8">
+                <div class="glass-card p-10 rounded-3xl group hover:border-blue-500/50 transition-all">
+                    <i data-lucide="graduation-cap" class="w-12 h-12 text-blue-500 mb-6 group-hover:scale-110 transition-transform"></i>
+                    <h3 class="text-2xl font-bold mb-4">Education Platforms</h3>
+                    <p class="text-slate-400">Custom LMS and school management portals with student-parent integration.</p>
+                </div>
+                <div class="glass-card p-10 rounded-3xl group hover:border-violet-500/50 transition-all">
+                    <i data-lucide="activity" class="w-12 h-12 text-violet-500 mb-6 group-hover:scale-110 transition-transform"></i>
+                    <h3 class="text-2xl font-bold mb-4">Healthcare Systems</h3>
+                    <p class="text-slate-400">Secure telehealth solutions and patient management dashboards.</p>
+                </div>
+                <div class="glass-card p-10 rounded-3xl group hover:border-blue-400/50 transition-all">
+                    <i data-lucide="home" class="w-12 h-12 text-blue-400 mb-6 group-hover:scale-110 transition-transform"></i>
+                    <h3 class="text-2xl font-bold mb-4">Real Estate & Hospitality</h3>
+                    <p class="text-slate-400">Dynamic listing platforms and automated booking systems.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="pricing" class="py-24 border-t border-slate-800/50">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="text-center mb-16">
+                    <span class="text-blue-500 font-bold uppercase tracking-widest text-sm">Investment</span>
+                    <h2 class="text-4xl font-bold mt-4 mb-4">Pricing <span class="icon-gradient">Packages</span></h2>
+                    <p class="text-slate-400 max-w-2xl mx-auto">Transparent tiers designed to scale with your business goals.</p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8 items-center">
+                    <div class="glass-card p-8 rounded-[32px] border border-slate-700/50 hover:scale-[1.02] transition-transform duration-300">
+                        <h3 class="text-xl font-bold mb-2">Starter</h3>
+                        <p class="text-slate-400 text-sm mb-6">Best for small businesses and MVPs.</p>
+                        <div class="mb-8">
+                            <span class="text-4xl font-extrabold">$1,499</span>
+                            <span class="text-slate-500">/one-time</span>
+                        </div>
+                        <ul class="space-y-4 mb-10">
+                            <li class="flex items-center gap-3 text-sm text-slate-300"><i data-lucide="check" class="w-5 h-5 text-blue-500"></i> Up to 5 Responsive Pages</li>
+                            <li class="flex items-center gap-3 text-sm text-slate-300"><i data-lucide="check" class="w-5 h-5 text-blue-500"></i> Modern UI/UX Design</li>
+                            <li class="flex items-center gap-3 text-sm text-slate-300"><i data-lucide="check" class="w-5 h-5 text-blue-500"></i> Basic SEO Setup</li>
+                            <li class="flex items-center gap-3 text-sm text-slate-300"><i data-lucide="check" class="w-5 h-5 text-blue-500"></i> Contact Form Integration</li>
+                        </ul>
+                        <a href="#get-in-touch" class="block text-center py-4 rounded-xl border border-blue-500/30 font-bold hover:bg-blue-500/10 transition">Choose Starter</a>
+                    </div>
+
+                    <div class="glass-card p-8 rounded-[32px] border-2 border-blue-500 relative transform md:scale-110 z-10 bg-slate-800/80 shadow-2xl shadow-blue-500/10">
+                        <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-blue-500 text-white text-[10px] font-bold px-4 py-1 rounded-full uppercase tracking-widest">
+                            Most Popular
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Professional</h3>
+                        <p class="text-slate-400 text-sm mb-6">Best for growing brands and startups.</p>
+                        <div class="mb-8">
+                            <span class="text-4xl font-extrabold">$3,499</span>
+                            <span class="text-slate-500">/one-time</span>
+                        </div>
+                        <ul class="space-y-4 mb-10">
+                            <li class="flex items-center gap-3 text-sm text-slate-200 font-medium"><i data-lucide="check" class="w-5 h-5 text-blue-500"></i> Up to 15 Premium Pages</li>
+                            <li class="flex items-center gap-3 text-sm text-slate-200 font-medium"><i data-lucide="check" class="w-5 h-5 text-blue-500"></i> Custom CMS Integration</li>
+                            <li class="flex items-center gap-3 text-sm text-slate-200 font-medium"><i data-lucide="check" class="w-5 h-5 text-blue-500"></i> Advanced Motion Graphics</li>
+                            <li class="flex items-center gap-3 text-sm text-slate-200 font-medium"><i data-lucide="check" class="w-5 h-5 text-blue-500"></i> Lead Generation Funnels</li>
+                            <li class="flex items-center gap-3 text-sm text-slate-200 font-medium"><i data-lucide="check" class="w-5 h-5 text-blue-500"></i> Speed Optimization</li>
+                        </ul>
+                        <a href="#get-in-touch" class="block text-center py-4 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold shadow-lg shadow-blue-600/30 transition">Get Started</a>
+                    </div>
+
+                    <div class="glass-card p-8 rounded-[32px] border border-slate-700/50 hover:scale-[1.02] transition-transform duration-300">
+                        <h3 class="text-xl font-bold mb-2">Premium</h3>
+                        <p class="text-slate-400 text-sm mb-6">Best for scaling enterprise companies.</p>
+                        <div class="mb-8">
+                            <span class="text-4xl font-extrabold">$7,999</span>
+                            <span class="text-slate-500">/one-time</span>
+                        </div>
+                        <ul class="space-y-4 mb-10">
+                            <li class="flex items-center gap-3 text-sm text-slate-300"><i data-lucide="check" class="w-5 h-5 text-blue-500"></i> Unlimited Custom Pages</li>
+                            <li class="flex items-center gap-3 text-sm text-slate-300"><i data-lucide="check" class="w-5 h-5 text-blue-500"></i> AI & Automation Integration</li>
+                            <li class="flex items-center gap-3 text-sm text-slate-300"><i data-lucide="check" class="w-5 h-5 text-blue-500"></i> Secure Telehealth/LMS Portals</li>
+                            <li class="flex items-center gap-3 text-sm text-slate-300"><i data-lucide="check" class="w-5 h-5 text-blue-500"></i> 24/7 Priority Maintenance</li>
+                        </ul>
+                        <a href="#get-in-touch" class="block text-center py-4 rounded-xl border border-blue-500/30 font-bold hover:bg-blue-500/10 transition">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="py-24 max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4">Featured <span class="icon-gradient">Projects</span></h2>
+                <p class="text-slate-400">Real-world systems built for industry leaders.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+                <div class="project-card glass-card rounded-3xl overflow-hidden group">
+                    <div class="project-image-container">
+                        <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=1200&auto=format&fit=crop" class="project-image">
+                    </div>
+                    <div class="p-8">
+                        <span class="text-xs font-bold text-blue-400 uppercase tracking-widest">Real Estate</span>
+                        <h4 class="text-xl font-bold mt-2">Luxury Property Portal</h4>
+                    </div>
+                </div>
+                <div class="project-card glass-card rounded-3xl overflow-hidden group">
+                    <div class="project-image-container">
+                        <img src="https://images.unsplash.com/photo-1581090700227-1e37b190418e?q=80&w=1200&auto=format&fit=crop" class="project-image">
+                    </div>
+                    <div class="p-8">
+                        <span class="text-xs font-bold text-violet-400 uppercase tracking-widest">Education</span>
+                        <h4 class="text-xl font-bold mt-2">Enterprise LMS Dashboard</h4>
+                    </div>
+                </div>
+                <div class="project-card glass-card rounded-3xl overflow-hidden group">
+                    <div class="project-image-container">
+                        <img src="https://images.unsplash.com/photo-1580281657527-47f249e8f8a3?q=80&w=1200&auto=format&fit=crop" class="project-image">
+                    </div>
+                    <div class="p-8">
+                        <span class="text-xs font-bold text-blue-400 uppercase tracking-widest">Healthcare</span>
+                        <h4 class="text-xl font-bold mt-2">Telehealth Patient Portal</h4>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="team" class="py-24 border-t border-slate-800/50">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold mb-4">Meet the <span class="icon-gradient">Visionaries</span></h2>
+                    <p class="text-slate-400 max-w-2xl mx-auto">The experts behind our high-performance digital systems.</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="glass-card p-6 rounded-3xl text-center group hover:border-blue-500/50 transition-all">
+                        <div class="w-32 h-32 mx-auto mb-6 rounded-2xl overflow-hidden border-2 border-slate-700 group-hover:border-blue-500 transition-colors">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&h=400&fit=crop" alt="Lead Designer" class="w-full h-full object-cover">
+                        </div>
+                        <h3 class="text-xl font-bold">Alex Rivers</h3>
+                        <p class="text-blue-400 font-medium text-sm mb-4">Lead Systems Designer</p>
+                        <p class="text-slate-400 text-sm">Specialist in high-fidelity interface architecture and user psychology.</p>
+                    </div>
+                    <div class="glass-card p-6 rounded-3xl text-center group hover:border-violet-500/50 transition-all">
+                        <div class="w-32 h-32 mx-auto mb-6 rounded-2xl overflow-hidden border-2 border-slate-700 group-hover:border-violet-500 transition-colors">
+                            <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=400&h=400&fit=crop" alt="Frontend Developer" class="w-full h-full object-cover">
+                        </div>
+                        <h3 class="text-xl font-bold">Sarah Chen</h3>
+                        <p class="text-violet-400 font-medium text-sm mb-4">Senior Frontend Engineer</p>
+                        <p class="text-slate-400 text-sm">Expert in React, motion design, and building scalable enterprise UI components.</p>
+                    </div>
+                    <div class="glass-card p-6 rounded-3xl text-center group hover:border-blue-400/50 transition-all">
+                        <div class="w-32 h-32 mx-auto mb-6 rounded-2xl overflow-hidden border-2 border-slate-700 group-hover:border-blue-400 transition-colors">
+                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=400&h=400&fit=crop" alt="Project Manager" class="w-full h-full object-cover">
+                        </div>
+                        <h3 class="text-xl font-bold">Marcus Thorne</h3>
+                        <p class="text-blue-300 font-medium text-sm mb-4">Project Director</p>
+                        <p class="text-slate-400 text-sm">Bridging technical complexity with business strategy for industry leaders.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="get-in-touch" class="py-24 bg-slate-900/40">
+            <div class="max-w-4xl mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold mb-4">Get in <span class="icon-gradient">Touch</span></h2>
+                    <p class="text-slate-400">Tell us about your project requirements and we'll get back to you within 24 hours.</p>
+                </div>
+                
+                <form id="contact-form" class="glass-card p-8 md:p-12 rounded-[32px] space-y-6">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="space-y-2">
+                            <label for="name" class="text-sm font-semibold text-slate-300 ml-1">Full Name</label>
+                            <input type="text" id="name" name="name" placeholder="John Doe" required 
+                                class="w-full px-5 py-4 rounded-xl form-input text-white">
+                        </div>
+                        <div class="space-y-2">
+                            <label for="email" class="text-sm font-semibold text-slate-300 ml-1">Email Address</label>
+                            <input type="email" id="email" name="email" placeholder="john@example.com" required 
+                                class="w-full px-5 py-4 rounded-xl form-input text-white">
+                        </div>
+                    </div>
+                    <div class="space-y-2">
+                        <label for="message" class="text-sm font-semibold text-slate-300 ml-1">Your Message</label>
+                        <textarea id="message" name="message" rows="5" placeholder="Describe your vision..." required 
+                            class="w-full px-5 py-4 rounded-xl form-input text-white resize-none"></textarea>
+                    </div>
+                    <button type="submit" class="w-full py-4 bg-[var(--color-accent-main)] hover:bg-blue-600 text-white font-bold rounded-xl transition-all shadow-lg shadow-blue-500/20">
+                        Send Message
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <section class="py-32">
+            <div class="max-w-5xl mx-auto px-6 glass-card p-16 rounded-[40px] text-center relative overflow-hidden">
+                <div class="absolute top-0 right-0 p-10 opacity-10">
+                    <i data-lucide="send" class="w-32 h-32"></i>
+                </div>
+                <h2 class="text-5xl font-extrabold mb-6">Ready to Start Your <span class="icon-gradient">Project?</span></h2>
+                <p class="text-xl text-slate-400 mb-12 max-w-2xl mx-auto">We are currently accepting new high-ticket enterprise projects. Let's discuss your vision.</p>
+                
+                <div class="flex flex-wrap justify-center gap-6">
+                    <a href="https://wa.me/2348104141138" class="flex items-center gap-3 bg-[var(--color-whatsapp)] py-4 px-10 rounded-2xl font-bold hover:scale-105 transition shadow-lg shadow-green-500/20">
+                        <i data-lucide="message-circle"></i> Message WhatsApp
+                    </a>
+                    <a href="mailto:info@okvtechnology.com" class="flex items-center gap-3 bg-blue-600 py-4 px-10 rounded-2xl font-bold hover:scale-105 transition shadow-lg shadow-blue-500/20">
+                        <i data-lucide="mail"></i> Send Email
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <a href="https://wa.me/2348104141138" target="_blank" class="whatsapp-float">
+        <i data-lucide="message-circle" class="w-7 h-7"></i>
+    </a>
+
+    <footer class="bg-slate-950 pt-20 pb-10 border-t border-slate-900">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-12 mb-20">
+            <div class="col-span-2">
+                <h4 class="text-2xl font-bold icon-gradient mb-4">OKV Tech</h4>
+                <p class="text-slate-400 max-w-sm mb-6">Specializing in intelligent digital systems and high-end web architecture for industry leaders.</p>
+                <p class="text-sm text-slate-500">No 11, Opp old WAEC Office, Moferere Ado-Ekiti, Nigeria.</p>
+            </div>
+            <div>
+                <h5 class="font-bold mb-6 text-white">Focus Areas</h5>
+                <ul class="space-y-4 text-slate-400 text-sm">
+                    <li>School Management</li>
+                    <li>Telehealth Portals</li>
+                    <li>Real Estate SaaS</li>
+                    <li>AI & Automation</li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="font-bold mb-6 text-white">Connect</h5>
+                <ul class="space-y-4 text-slate-400 text-sm">
+                    <li><a href="mailto:info@okvtechnology.com" class="hover:text-white transition">info@okvtechnology.com</a></li>
+                    <li><a href="tel:+2348104141138" class="hover:text-white transition">+234 8104141138</a></li>
+                    <li class="flex gap-4 pt-2">
+                        <i data-lucide="linkedin" class="w-5 h-5 cursor-pointer hover:text-white"></i>
+                        <i data-lucide="twitter" class="w-5 h-5 cursor-pointer hover:text-white"></i>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="text-center text-slate-600 text-xs border-t border-slate-900/50 pt-10">
+            &copy; 2025 OKV Technology. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Theme Toggle
+        const html = document.documentElement;
+        document.getElementById('theme-toggle').addEventListener('click', () => {
+            html.classList.toggle('light');
+        });
+
+        // Mobile Menu Logic
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        function toggleMenu() {
+            const isOpen = mobileMenu.classList.toggle('open');
+            if(isOpen) {
+                menuIcon.setAttribute('data-lucide', 'x');
+            } else {
+                menuIcon.setAttribute('data-lucide', 'menu');
+            }
+            lucide.createIcons();
+        }
+
+        menuToggle.addEventListener('click', toggleMenu);
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('open');
+                menuIcon.setAttribute('data-lucide', 'menu');
+                lucide.createIcons();
+            });
+        });
+
+        // Form Submission (Simulated)
+        const contactForm = document.getElementById('contact-form');
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const btn = contactForm.querySelector('button');
+            const originalText = btn.innerText;
+            
+            btn.innerText = "Sending...";
+            btn.disabled = true;
+
+            setTimeout(() => {
+                alert("Thank you! Your message has been sent successfully.");
+                btn.innerText = originalText;
+                btn.disabled = false;
+                contactForm.reset();
+            }, 1500);
+        });
+    </script>
+</body>
+</html>

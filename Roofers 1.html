@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ApexShield Roofing Services | Professional Roofing in Lagos, Ogun & Ibadan</title>
+    <meta name="description" content="Expert roofing and construction services by ApexShield. High-quality roof installation, repairs, and maintenance across Lagos. Get a free quote today!">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;800&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* --- PROFESSIONAL CSS VARIABLES --- */
+        :root {
+            --primary: #1F2933;
+            --secondary: #F9FAFB;
+            --accent: #F59E0B;
+            --accent-hover: #d97706;
+            --text-dark: #111827;
+            --text-light: #6B7280;
+            --white: #ffffff;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --container-width: 1200px;
+        }
+
+        /* --- BASE STYLES --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--secondary);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        /* --- LAYOUT COMPONENTS --- */
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .section-padding {
+            padding: clamp(60px, 10vw, 100px) 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: clamp(40px, 8vw, 60px);
+        }
+
+        .section-title h2 {
+            font-size: clamp(2rem, 5vw, 2.5rem);
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .underline {
+            width: 70px;
+            height: 4px;
+            background: var(--accent);
+            margin: 0 auto;
+            border-radius: 2px;
+        }
+
+        /* --- BUTTONS --- */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 32px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* --- HEADER & NAVIGATION --- */
+        header {
+            background: var(--white);
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .top-bar {
+            background: var(--primary);
+            color: var(--white);
+            padding: 10px 0;
+            font-size: 0.85rem;
+        }
+
+        .top-bar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo img {
+            height: 45px;
+            width: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(rgba(17, 24, 39, 0.75), rgba(17, 24, 39, 0.75)), 
+                        url('https://images.unsplash.com/photo-1632759145351-1d592919f522?auto=format&fit=crop&q=80&w=1920') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            color: var(--white);
+            padding-top: 80px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            margin-bottom: 25px;
+        }
+
+        .hero p {
+            font-size: clamp(1.1rem, 2vw, 1.25rem);
+            margin-bottom: 40px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        /* --- ABOUT & EXPERIENCE (EXTENDED) --- */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* New Experience Badge Overlay */
+        .experience-badge {
+            position: absolute;
+            bottom: -20px;
+            right: -20px;
+            background: var(--accent);
+            color: var(--white);
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .experience-badge span {
+            display: block;
+            font-size: 2rem;
+            font-weight: 800;
+            line-height: 1;
+        }
+
+        .license-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .license-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .license-item i { color: var(--accent); }
+
+        /* --- WHY CHOOSE US --- */
+        .why-us {
+            background-color: #f3f4f6;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 12px;
+            text-align: center;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .card i {
+            font-size: 3rem;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+
+        /* --- SERVICES --- */
+        .service-card {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .service-img {
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.6s ease;
+        }
+
+        .service-card:hover .service-img {
+            transform: scale(1.05);
+        }
+
+        .service-info {
+            padding: 30px;
+        }
+
+        .service-info h3 { margin-bottom: 15px; }
+
+        /* --- GALLERY SECTION (NEW) --- */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            height: 300px;
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(31, 41, 51, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            opacity: 0;
+            transition: var(--transition);
+            padding: 20px;
+            text-align: center;
+        }
+
+        .gallery-item:hover .gallery-overlay { opacity: 1; }
+        .gallery-item:hover img { transform: scale(1.1); }
+
+        /* --- PROCESS --- */
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+        }
+
+        .step {
+            text-align: center;
+            position: relative;
+        }
+
+        .step-num {
+            width: 60px;
+            height: 60px;
+            background: var(--accent);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            font-weight: 800;
+            font-size: 1.4rem;
+            box-shadow: 0 0 0 8px rgba(245, 158, 11, 0.1);
+        }
+
+        /* --- TESTIMONIALS --- */
+        .testimonial-slider {
+            overflow: hidden;
+            padding: 20px 0;
+            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+        }
+
+        .testimonial-track {
+            display: flex;
+            gap: 30px;
+            animation: scroll 40s linear infinite;
+            width: max-content;
+        }
+
+        .t-card {
+            width: 400px;
+            background: var(--white);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+        }
+
+        /* --- CONTACT & QUOTE --- */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 60px;
+        }
+
+        .contact-form {
+            background: var(--white);
+            padding: clamp(30px, 5vw, 50px);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #E5E7EB;
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.1);
+        }
+
+        /* --- FLOATING ACTIONS --- */
+        .floating-contact {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 999;
+        }
+
+        .float-btn {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.4rem;
+            box-shadow: var(--shadow-lg);
+            transition: var(--transition);
+        }
+
+        .float-whatsapp { background: #25D366; }
+        .float-phone { background: var(--accent); }
+
+        /* --- FOOTER --- */
+        footer {
+            background: var(--primary);
+            color: var(--white);
+            padding: 80px 0 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .footer-links h4 {
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-links h4::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--accent);
+        }
+
+        .footer-links ul { list-style: none; }
+        .footer-links ul li { margin-bottom: 12px; }
+        .footer-links a { color: #9CA3AF; text-decoration: none; transition: var(--transition); }
+        .footer-links a:hover { color: var(--accent); padding-left: 5px; }
+
+        /* --- ANIMATIONS --- */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* --- RESPONSIVE QUERIES --- */
+        @media (max-width: 1024px) {
+            .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+            .about-image { order: 2; max-width: 600px; margin: 0 auto; }
+        }
+
+        @media (max-width: 768px) {
+            .top-bar { display: none; }
+            .hamburger { display: block; }
+            
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: var(--white);
+                flex-direction: column;
+                align-items: center;
+                padding-top: 50px;
+                transition: 0.4s ease;
+                box-shadow: var(--shadow);
+            }
+
+            .nav-links.active { left: 0; }
+            .nav-links a { font-size: 1.2rem; }
+            
+            .experience-badge { right: 0; bottom: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="top-bar">
+            <div class="container">
+                <div><i class="fas fa-phone"></i> +234 813 456 9021 | <i class="fas fa-envelope"></i> info@apexshieldroofing.com</div>
+                <div class="desktop-only">Lagos • Ogun • Ibadan</div>
+            </div>
+        </div>
+        <nav class="nav-container container">
+            <a href="#home" class="logo">
+                <img src="https://via.placeholder.com/160x60?text=ApexShield" alt="ApexShield Logo">
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#gallery">Projects</a></li>
+                <li><a href="#process">Process</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger" id="menuBtn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Protect Your Future with a Premium Roof</h1>
+                <p>Industry-leading roofing solutions for residential and industrial properties. Quality craftsmanship that stands the test of time and Nigeria's weather.</p>
+                <div class="hero-btns">
+                    <a href="#contact" class="btn btn-primary">Book a Consultation</a>
+                    <a href="https://wa.me/2348134569021" class="btn" style="background: #25D366; color: white;">
+                        <i class="fab fa-whatsapp" style="margin-right: 10px;"></i> Chat on WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding" id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=800" alt="ApexShield Engineering Team">
+                    <div class="experience-badge">
+                        <span>15+</span> Years Exp.
+                    </div>
+                </div>
+                <div class="about-text">
+                    <div class="section-title" style="text-align: left; margin-bottom: 25px;">
+                        <h2>Building Trust Since 2010</h2>
+                        <div class="underline" style="margin: 0;"></div>
+                    </div>
+                    <p>ApexShield Roofing Services is a leader in structural protection. We solve the problem of leaking, outdated, and unsafe roofs by providing modern, high-grade materials and expert installation.</p>
+                    <p style="margin-top: 15px;">Our mission is to provide every building in Nigeria with a shield that combines aesthetic beauty with unshakeable durability.</p>
+                    
+                    <div class="license-list">
+                        <div class="license-item"><i class="fas fa-check-circle"></i> Licensed Engineers</div>
+                        <div class="license-item"><i class="fas fa-check-circle"></i> COREN Certified</div>
+                        <div class="license-item"><i class="fas fa-check-circle"></i> ISO Standards</div>
+                        <div class="license-item"><i class="fas fa-check-circle"></i> Fully Insured</div>
+                    </div>
+
+                    <a href="#contact" class="btn btn-primary" style="margin-top: 35px;">Meet Our Experts</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding why-us">
+        <div class="container">
+            <div class="section-title">
+                <h2>Why Choose ApexShield?</h2>
+                <div class="underline"></div>
+            </div>
+            <div class="grid-3">
+                <div class="card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Maximum Protection</h3>
+                    <p>We use weather-resistant materials designed to withstand the harshest tropical rain and heat.</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-user-check"></i>
+                    <h3>Certified Experts</h3>
+                    <p>Our team consists of highly trained engineers and installers with over 15 years of experience.</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-clock"></i>
+                    <h3>Fast Turnaround</h3>
+                    <p>We value your time. Most residential projects are completed within 7-14 business days.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding" id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Specialized Services</h2>
+                <div class="underline"></div>
+            </div>
+            <div class="grid-3">
+                <div class="service-card">
+                    <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1628595351029-c2bf17511435?auto=format&fit=crop&q=80&w=600')"></div>
+                    <div class="service-info">
+                        <h3>New Roof Installation</h3>
+                        <p>Premium aluminum, stone-coated, or shingle installations for new residential and commercial buildings.</p>
+                        <a href="#contact" class="btn btn-primary" style="margin-top: 20px; width: 100%;">Get a Quote</a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1516594798947-e65505dbb29d?auto=format&fit=crop&q=80&w=600')"></div>
+                    <div class="service-info">
+                        <h3>Roof Leak Repairs</h3>
+                        <p>Specialized emergency repair services to stop leaks and prevent structural water damage in existing homes.</p>
+                        <a href="#contact" class="btn btn-primary" style="margin-top: 20px; width: 100%;">Request Repair</a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1503387762-592dee58c160?auto=format&fit=crop&q=80&w=600')"></div>
+                    <div class="service-info">
+                        <h3>Professional Inspection</h3>
+                        <p>Detailed structural health checks and cleaning to extend your roof lifespan by decades.</p>
+                        <a href="#contact" class="btn btn-primary" style="margin-top: 20px; width: 100%;">Book Inspection</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding" id="gallery">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Recent Projects</h2>
+                <div class="underline"></div>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1449156001533-cb39c8584397?auto=format&fit=crop&q=80&w=600" alt="Roof Installation Lagos">
+                    <div class="gallery-overlay"><h4>Stone Coated Roof - Lekki, Lagos</h4></div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=600" alt="Industrial Roofing">
+                    <div class="gallery-overlay"><h4>Industrial Warehouse - Ibadan</h4></div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1635339001328-36a6f194608c?auto=format&fit=crop&q=80&w=600" alt="Residential Roof">
+                    <div class="gallery-overlay"><h4>Aluminum Longspan - Abeokuta</h4></div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1513584684374-8bdb74838a0f?auto=format&fit=crop&q=80&w=600" alt="Luxury Home Roof">
+                    <div class="gallery-overlay"><h4>Premium Shingles - Ikoyi</h4></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding why-us" id="process">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Seamless Process</h2>
+                <div class="underline"></div>
+            </div>
+            <div class="process-steps">
+                <div class="step">
+                    <div class="step-num">1</div>
+                    <h4>Consultation</h4>
+                    <p>Free site visit and professional assessment.</p>
+                </div>
+                <div class="step">
+                    <div class="step-num">2</div>
+                    <h4>Strategy</h4>
+                    <p>Transparent quoting and material selection.</p>
+                </div>
+                <div class="step">
+                    <div class="step-num">3</div>
+                    <h4>Execution</h4>
+                    <p>Safe and professional expert installation.</p>
+                </div>
+                <div class="step">
+                    <div class="step-num">4</div>
+                    <h4>Warranty</h4>
+                    <p>Final walkthrough and 25-year certificate.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding" id="contact">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-form">
+                    <h3>Get a Free Estimate</h3>
+                    <p style="margin-bottom: 30px;">Fill out the form below and we'll reach out within 24 hours.</p>
+                    <form id="bookingForm">
+                        <div class="form-group">
+                            <input type="text" placeholder="Full Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Email Address" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" placeholder="Phone Number" required>
+                        </div>
+                        <div class="form-group">
+                            <select required>
+                                <option value="">Select Service Needed</option>
+                                <option>New Installation</option>
+                                <option>Leak Repair</option>
+                                <option>Full Maintenance</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <textarea rows="4" placeholder="Briefly describe your project location and needs"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Send My Request</button>
+                    </form>
+                    <div id="formFeedback" style="display:none; margin-top:20px; color: #059669; font-weight: 600;">
+                        <i class="fas fa-check-circle"></i> Thank you! Your request has been sent.
+                    </div>
+                </div>
+                <div class="contact-info">
+                    <h3>Contact Details</h3>
+                    <div style="margin: 30px 0;">
+                        <p style="margin-bottom: 20px;"><i class="fas fa-map-marker-alt" style="color: var(--accent); width: 25px;"></i> 14 Industrial Layout, Alagbado, Lagos</p>
+                        <p style="margin-bottom: 20px;"><i class="fas fa-phone-alt" style="color: var(--accent); width: 25px;"></i> +234 813 456 9021</p>
+                        <p style="margin-bottom: 20px;"><i class="fas fa-envelope" style="color: var(--accent); width: 25px;"></i> info@apexshieldroofing.com</p>
+                    </div>
+                    
+                    <h3>Service Areas</h3>
+                    <p style="color: var(--text-light); margin-top: 15px;">Lagos, Ogun State, Ibadan, and surrounding South-West regions.</p>
+
+                    <h3 style="margin-top: 40px;">Follow Our Work</h3>
+                    <div style="display: flex; gap: 15px; margin-top: 20px;">
+                        <a href="#" style="font-size: 1.5rem; color: var(--primary);"><i class="fab fa-facebook"></i></a>
+                        <a href="#" style="font-size: 1.5rem; color: var(--primary);"><i class="fab fa-instagram"></i></a>
+                        <a href="#" style="font-size: 1.5rem; color: var(--primary);"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-links">
+                    <img src="https://via.placeholder.com/160x60?text=ApexShield&bg=ffffff" alt="ApexShield Logo" style="margin-bottom: 20px;">
+                    <p>Providing the most durable roofing protection for Nigerian homes and industries.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#services">Our Services</a></li>
+                        <li><a href="#gallery">Project Gallery</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Warranty Terms</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div style="text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 30px;">
+                <p>&copy; 2025 <strong>ApexShield Roofing Services</strong>. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="floating-contact">
+        <a href="tel:+2348134569021" class="float-btn float-phone" title="Call Now"><i class="fas fa-phone"></i></a>
+        <a href="https://wa.me/2348134569021" class="float-btn float-whatsapp" title="WhatsApp Chat"><i class="fab fa-whatsapp"></i></a>
+    </div>
+
+    <script>
+        // Professional Mobile Menu Toggle
+        const menuBtn = document.getElementById('menuBtn');
+        const navLinks = document.getElementById('navLinks');
+        
+        menuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const icon = menuBtn.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
+
+        // Close menu when a link is clicked
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                menuBtn.querySelector('i').classList.replace('fa-times', 'fa-bars');
+            });
+        });
+
+        // Form Submission with Feedback
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const feedback = document.getElementById('formFeedback');
+            feedback.style.display = 'block';
+            this.reset();
+            
+            // Scroll to feedback
+            feedback.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            
+            setTimeout(() => {
+                feedback.style.display = 'none';
+            }, 6000);
+        });
+
+        // Enhanced Scroll Spying for Navbar
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            header.style.padding = window.scrollY > 50 ? '5px 0' : '10px 0';
+        });
+    </script>
+</body>
+</html>

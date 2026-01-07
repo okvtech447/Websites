@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PrimeNest Properties | Premium Nigerian Real Estate</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary: #1A1C1E; 
+            --accent: #006AFF;  
+            --accent-hover: #0056d2;
+            --secondary: #F8FAFC; 
+            --text-dark: #1E293B;
+            --text-light: #64748B;
+            --white: #ffffff;
+            --border: #e2e8f0;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        /* --- BASE STYLES --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+        body { font-family: 'Inter', sans-serif; color: var(--text-dark); background: var(--white); line-height: 1.6; overflow-x: hidden; }
+        
+        .container { width: 100%; max-width: 1240px; margin: 0 auto; padding: 0 24px; }
+        section { padding: 80px 0; }
+        img { max-width: 100%; height: auto; display: block; }
+        
+        .btn { padding: 14px 28px; border-radius: 8px; font-weight: 700; text-decoration: none; display: inline-block; transition: var(--transition); cursor: pointer; border: none; font-size: 0.95rem; text-align: center; }
+        .btn-blue { background: var(--accent); color: white; }
+        .btn-blue:hover { background: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0, 106, 255, 0.2); }
+        .btn-outline { border: 2px solid var(--accent); color: var(--accent); background: transparent; }
+        .btn-outline:hover { background: var(--accent); color: white; }
+
+        .section-header { text-align: center; margin-bottom: 50px; }
+        .accent-line { width: 50px; height: 4px; background: var(--accent); margin-bottom: 15px; display: inline-block; border-radius: 2px; }
+        .section-title { font-size: clamp(1.8rem, 3vw, 2.5rem); font-weight: 800; color: var(--primary); }
+
+        /* --- NAVIGATION --- */
+        header { position: fixed; width: 100%; top: 0; z-index: 1000; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); }
+        nav { display: flex; justify-content: space-between; align-items: center; height: 80px; }
+        .logo { font-size: 1.5rem; font-weight: 800; color: var(--primary); text-decoration: none; display: flex; align-items: center; gap: 10px; }
+        .logo i { color: var(--accent); }
+
+        .nav-links { display: flex; gap: 32px; list-style: none; }
+        .nav-links a { text-decoration: none; color: var(--text-dark); font-weight: 600; font-size: 0.95rem; transition: var(--transition); }
+        .nav-links a:hover { color: var(--accent); }
+
+        .menu-icon { display: none; font-size: 1.5rem; cursor: pointer; color: var(--primary); }
+
+        /* --- HERO SECTION --- */
+        .hero { padding-top: 160px; padding-bottom: 100px; background: radial-gradient(circle at top right, #f0f7ff, #ffffff); overflow: hidden; }
+        .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .hero-text h1 { font-size: clamp(2.5rem, 5vw, 3.8rem); line-height: 1.1; font-weight: 800; color: var(--primary); margin-bottom: 24px; }
+        .hero-text p { font-size: 1.2rem; color: var(--text-light); margin-bottom: 35px; }
+
+        /* --- NEW: PROPERTY SEARCH BAR --- */
+        .search-container { background: white; padding: 20px; border-radius: 15px; box-shadow: var(--shadow); display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-top: 40px; border: 1px solid var(--border); }
+        .search-group { display: flex; flex-direction: column; gap: 5px; }
+        .search-group label { font-size: 0.75rem; font-weight: 700; color: var(--text-light); text-transform: uppercase; }
+        .search-group select, .search-group input { border: none; font-size: 0.95rem; font-weight: 600; color: var(--primary); outline: none; background: transparent; }
+        
+        .hero-image { position: relative; }
+        .hero-image img { width: 100%; border-radius: 30px; box-shadow: 20px 20px 60px rgba(0,0,0,0.08); }
+        .experience-badge { position: absolute; bottom: 30px; left: -20px; background: var(--white); padding: 20px; border-radius: 15px; box-shadow: var(--shadow); display: flex; align-items: center; gap: 15px; }
+        .experience-badge span { font-size: 2.2rem; font-weight: 800; color: var(--accent); }
+
+        /* --- NEW: LISTINGS SECTION --- */
+        .listings { background: var(--secondary); }
+        .listings-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+        .property-card { background: white; border-radius: 20px; overflow: hidden; transition: var(--transition); border: 1px solid var(--border); }
+        .property-card:hover { transform: translateY(-10px); box-shadow: var(--shadow); }
+        .property-img { height: 240px; position: relative; }
+        .property-img img { width: 100%; height: 100%; object-fit: cover; }
+        .price-tag { position: absolute; bottom: 15px; left: 15px; background: var(--accent); color: white; padding: 5px 15px; border-radius: 5px; font-weight: 700; }
+        .property-content { padding: 25px; }
+        .property-type { font-size: 0.8rem; color: var(--accent); font-weight: 700; text-transform: uppercase; }
+        .property-content h3 { margin: 10px 0; font-size: 1.25rem; }
+        .property-content p { color: var(--text-light); font-size: 0.9rem; margin-bottom: 20px; }
+        .property-specs { display: flex; gap: 20px; border-top: 1px solid var(--border); padding-top: 15px; }
+        .property-specs span { font-size: 0.85rem; color: var(--text-dark); font-weight: 600; }
+
+        /* --- ABOUT SECTION --- */
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+        .about-features { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-top: 35px; }
+        .feature-item h4 { color: var(--accent); margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+
+        /* --- SERVICES --- */
+        .service-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .service-card { background: var(--white); padding: 40px; border-radius: 20px; border: 1px solid var(--border); transition: var(--transition); }
+        .service-card:hover { border-color: var(--accent); transform: translateY(-5px); box-shadow: var(--shadow); }
+        .service-card i { font-size: 2.5rem; color: var(--accent); margin-bottom: 20px; }
+
+        /* --- NEW: AGENTS SECTION --- */
+        .agents-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
+        .agent-card { text-align: center; }
+        .agent-img { width: 180px; height: 180px; border-radius: 50%; margin: 0 auto 20px; overflow: hidden; border: 5px solid var(--secondary); }
+        .agent-img img { width: 100%; height: 100%; object-fit: cover; }
+        .agent-card h3 { font-size: 1.2rem; margin-bottom: 5px; }
+        .agent-card span { color: var(--accent); font-weight: 600; font-size: 0.9rem; }
+
+        /* --- NEW: BLOG SECTION --- */
+        .blog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .blog-card { background: white; border-radius: 15px; overflow: hidden; }
+        .blog-card img { height: 200px; width: 100%; object-fit: cover; }
+        .blog-content { padding: 20px; }
+        .blog-date { font-size: 0.8rem; color: var(--text-light); }
+        .blog-content h3 { font-size: 1.1rem; margin: 10px 0; line-height: 1.4; }
+
+        /* --- CONTACT --- */
+        .contact-container { background: var(--primary); color: white; padding: 60px; border-radius: 30px; display: grid; grid-template-columns: 1fr 1.2fr; gap: 60px; }
+        .contact-info h2 { font-size: 2.5rem; margin-bottom: 20px; }
+        .contact-form input, .contact-form textarea, .contact-form select { 
+            width: 100%; padding: 15px; margin-bottom: 15px; border-radius: 8px; border: 1px solid #3f444a; background: #2D3135; color: white; font-family: inherit;
+        }
+        .contact-form input::placeholder { color: #94a3b8; }
+
+        /* --- RESPONSIVENESS --- */
+        @media (max-width: 1024px) {
+            .hero-grid, .about-grid, .contact-container { gap: 40px; }
+            .search-container { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            header { height: 70px; }
+            nav { height: 70px; }
+            .menu-icon { display: block; }
+            .nav-links { 
+                position: fixed; top: 70px; left: -100%; width: 100%; height: calc(100vh - 70px); 
+                background: white; flex-direction: column; align-items: center; padding: 50px 0; transition: 0.4s ease-in-out; 
+                box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            }
+            .nav-links.active { left: 0; }
+            
+            .hero-grid, .about-grid, .contact-container { grid-template-columns: 1fr; text-align: center; }
+            .hero-text p { margin: 0 auto 30px; }
+            .hero-image { order: -1; }
+            .experience-badge { left: 50%; transform: translateX(-50%); bottom: -20px; }
+            .search-container { grid-template-columns: 1fr; }
+            .hero-btns { justify-content: center; }
+            .about-features { grid-template-columns: 1fr; text-align: left; }
+        }
+
+        /* Footer */
+        footer { padding: 60px 0 30px; border-top: 1px solid var(--border); background: var(--secondary); }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; margin-bottom: 40px; }
+        .footer-col h4 { margin-bottom: 20px; font-weight: 700; }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 10px; }
+        .footer-col ul li a { text-decoration: none; color: var(--text-light); transition: var(--transition); }
+        .footer-col ul li a:hover { color: var(--accent); padding-left: 5px; }
+        .social-links { display: flex; gap: 15px; }
+        .social-links a { width: 40px; height: 40px; border-radius: 50%; background: white; display: flex; align-items: center; justify-content: center; color: var(--accent); box-shadow: var(--shadow); transition: var(--transition); text-decoration: none; }
+        .social-links a:hover { background: var(--accent); color: white; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo"><i class="fas fa-city"></i> PrimeNest</a>
+                <ul class="nav-links" id="nav-menu">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#listings">Properties</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#agents">Agents</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <div class="menu-icon" id="mobile-btn">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-text">
+                    <span class="accent-line"></span>
+                    <h1>Find Your Dream Home in Nigeria</h1>
+                    <p>Discover luxury apartments, secure lands, and high-yield investment properties in Lagos, Abuja, and beyond.</p>
+                    <div class="hero-btns">
+                        <a href="#listings" class="btn btn-blue">View Listings</a>
+                        <a href="#contact" class="btn btn-outline">Contact Agent</a>
+                    </div>
+
+                    <div class="search-container">
+                        <div class="search-group">
+                            <label>Location</label>
+                            <select>
+                                <option>Lagos, NG</option>
+                                <option>Abuja, NG</option>
+                                <option>Ibadan, NG</option>
+                            </select>
+                        </div>
+                        <div class="search-group">
+                            <label>Type</label>
+                            <select>
+                                <option>Apartment</option>
+                                <option>Land</option>
+                                <option>Duplex</option>
+                            </select>
+                        </div>
+                        <div class="search-group">
+                            <label>Budget</label>
+                            <select>
+                                <option>₦20M - ₦50M</option>
+                                <option>₦50M - ₦150M</option>
+                                <option>₦150M+</option>
+                            </select>
+                        </div>
+                        <button class="btn btn-blue">Search</button>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1000&q=80" alt="Luxury Home">
+                    <div class="experience-badge">
+                        <span>15+</span>
+                        <p>Years of <br>Excellence</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="listings" class="listings">
+        <div class="container">
+            <div class="section-header">
+                <span class="accent-line"></span>
+                <h2 class="section-title">Featured Properties</h2>
+            </div>
+            <div class="listings-grid">
+                <div class="property-card">
+                    <div class="property-img">
+                        <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=600&q=80" alt="Villa">
+                        <span class="price-tag">₦120,000,000</span>
+                    </div>
+                    <div class="property-content">
+                        <span class="property-type">For Sale</span>
+                        <h3>Oceanview Estate Duplex</h3>
+                        <p><i class="fas fa-map-marker-alt"></i> Lekki Phase 1, Lagos</p>
+                        <div class="property-specs">
+                            <span><i class="fas fa-bed"></i> 5 Beds</span>
+                            <span><i class="fas fa-bath"></i> 4 Baths</span>
+                            <span><i class="fas fa-expand"></i> 1,200sqft</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="property-card">
+                    <div class="property-img">
+                        <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=600&q=80" alt="Apartment">
+                        <span class="price-tag">₦45,000,000</span>
+                    </div>
+                    <div class="property-content">
+                        <span class="property-type">For Sale</span>
+                        <h3>The Zenith Apartments</h3>
+                        <p><i class="fas fa-map-marker-alt"></i> Maitama, Abuja</p>
+                        <div class="property-specs">
+                            <span><i class="fas fa-bed"></i> 3 Beds</span>
+                            <span><i class="fas fa-bath"></i> 3 Baths</span>
+                            <span><i class="fas fa-expand"></i> 850sqft</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="property-card">
+                    <div class="property-img">
+                        <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=600&q=80" alt="Modern House">
+                        <span class="price-tag">₦85,000,000</span>
+                    </div>
+                    <div class="property-content">
+                        <span class="property-type">For Rent</span>
+                        <h3>Royal Garden Villa</h3>
+                        <p><i class="fas fa-map-marker-alt"></i> Jericho, Ibadan</p>
+                        <div class="property-specs">
+                            <span><i class="fas fa-bed"></i> 4 Beds</span>
+                            <span><i class="fas fa-bath"></i> 4 Baths</span>
+                            <span><i class="fas fa-expand"></i> 950sqft</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="#" class="btn btn-outline">Explore All Properties</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="container">
+        <div class="about-grid">
+            <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=800&q=80" alt="Office Building" style="border-radius: 30px;">
+            <div>
+                <span class="accent-line"></span>
+                <h2 class="section-title">Your Trusted Partner in Nigerian Real Estate</h2>
+                <p>With over 15 years of industry experience, PrimeNest Properties Ltd provides seamless property acquisition services. We handle the legal paperwork, verify titles, and ensure your investment grows.</p>
+                <div class="about-features">
+                    <div class="feature-item">
+                        <h4><i class="fas fa-check-circle"></i> Verified Titles</h4>
+                        <p style="font-size: 0.9rem; color: var(--text-light);">C of O and Governor's Consent guaranteed on all listings.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4><i class="fas fa-users"></i> Expert Guidance</h4>
+                        <p style="font-size: 0.9rem; color: var(--text-light);">Dedicated consultants for diaspora and local investors.</p>
+                    </div>
+                </div>
+                <a href="#contact" class="btn btn-blue" style="margin-top: 30px;">Learn More About Us</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-header">
+                <span class="accent-line"></span>
+                <h2 class="section-title">Professional Services</h2>
+            </div>
+            <div class="service-grid">
+                <div class="service-card">
+                    <i class="fas fa-key"></i>
+                    <h3>Property Sales</h3>
+                    <p>Exclusive access to prime lands and residential buildings in high-demand zones.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Portfolio Management</h3>
+                    <p>Strategic planning to maximize your rental yields and capital appreciation.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-building"></i>
+                    <h3>Development</h3>
+                    <p>End-to-end project management for commercial and residential developments.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="agents" class="container">
+        <div class="section-header">
+            <span class="accent-line"></span>
+            <h2 class="section-title">Meet Our Experts</h2>
+        </div>
+        <div class="agents-grid">
+            <div class="agent-card">
+                <div class="agent-img"><img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=400&q=80" alt="Agent"></div>
+                <h3>Samuel Okon</h3>
+                <span>Senior Consultant</span>
+            </div>
+            <div class="agent-card">
+                <div class="agent-img"><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80" alt="Agent"></div>
+                <h3>Bolanle Williams</h3>
+                <span>Head of Sales</span>
+            </div>
+            <div class="agent-card">
+                <div class="agent-img"><img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=400&q=80" alt="Agent"></div>
+                <h3>Chidi Eze</h3>
+                <span>Legal Advisor</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="blog" class="listings">
+        <div class="container">
+            <div class="section-header">
+                <span class="accent-line"></span>
+                <h2 class="section-title">Market Insights</h2>
+            </div>
+            <div class="blog-grid">
+                <div class="blog-card">
+                    <img src="https://images.unsplash.com/photo-1582408921715-18e7806367c1?auto=format&fit=crop&w=500&q=80" alt="Blog">
+                    <div class="blog-content">
+                        <span class="blog-date">Oct 24, 2025</span>
+                        <h3>Why Lekki Real Estate is Still the Best Investment</h3>
+                        <a href="#" style="color:var(--accent); text-decoration: none; font-weight: 700;">Read More →</a>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <img src="https://images.unsplash.com/photo-1460472178825-e5240623abe5?auto=format&fit=crop&w=500&q=80" alt="Blog">
+                    <div class="blog-content">
+                        <span class="blog-date">Oct 15, 2025</span>
+                        <h3>5 Things to Check Before Buying Land in Abuja</h3>
+                        <a href="#" style="color:var(--accent); text-decoration: none; font-weight: 700;">Read More →</a>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <img src="https://images.unsplash.com/photo-1554469384-e58fac16e23a?auto=format&fit=crop&w=500&q=80" alt="Blog">
+                    <div class="blog-content">
+                        <span class="blog-date">Sept 28, 2025</span>
+                        <h3>The Rise of Smart Homes in Lagos Nigeria</h3>
+                        <a href="#" style="color:var(--accent); text-decoration: none; font-weight: 700;">Read More →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="container">
+        <div class="contact-container">
+            <div class="contact-info">
+                <h2>Ready to Start Your Journey?</h2>
+                <p style="margin-bottom: 40px; opacity: 0.9;">Schedule a viewing or request a property catalog today.</p>
+                <div style="display: grid; gap: 20px;">
+                    <p><i class="fas fa-phone-alt" style="color:var(--accent); margin-right: 10px;"></i> +234 803 456 7890</p>
+                    <p><i class="fas fa-envelope" style="color:var(--accent); margin-right: 10px;"></i> info@primenestproperties.com</p>
+                    <p><i class="fas fa-map-marker-alt" style="color:var(--accent); margin-right: 10px;"></i> 12 Admiralty Way, Lekki, Lagos.</p>
+                </div>
+            </div>
+            <form class="contact-form">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <input type="text" placeholder="First Name" required>
+                    <input type="text" placeholder="Last Name" required>
+                </div>
+                <input type="email" placeholder="Email Address" required>
+                <select style="width: 100%; padding: 15px; margin-bottom: 15px; border-radius: 8px; border: 1px solid #3f444a; background: #2D3135; color: #94a3b8;">
+                    <option>Interested In...</option>
+                    <option>Buying Property</option>
+                    <option>Selling Property</option>
+                    <option>Investment Advice</option>
+                </select>
+                <textarea rows="5" placeholder="Your Message..."></textarea>
+                <button type="submit" class="btn btn-blue" style="width: 100%;">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <a href="#" class="logo" style="margin-bottom: 20px;"><i class="fas fa-city"></i> PrimeNest</a>
+                    <p style="color: var(--text-light); font-size: 0.9rem;">The leading real estate solutions provider in Nigeria, committed to excellence and transparency.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#listings">Properties</a></li>
+                        <li><a href="#agents">Our Agents</a></li>
+                        <li><a href="#blog">Market News</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Follow Us</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align: center; border-top: 1px solid var(--border); padding-top: 30px; color: var(--text-light); font-size: 0.85rem;">
+                <p>&copy; 2025 PrimeNest Properties Ltd. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const mobileBtn = document.getElementById('mobile-btn');
+        const navMenu = document.getElementById('nav-menu');
+
+        mobileBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            const icon = mobileBtn.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
+
+        // Close menu on click and handle scroll padding
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                const icon = mobileBtn.querySelector('i');
+                icon.classList.add('fa-bars');
+                icon.classList.remove('fa-times');
+            });
+        });
+
+        // Simple Header Scroll Effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.boxShadow = '0 5px 20px rgba(0,0,0,0.05)';
+            } else {
+                header.style.boxShadow = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

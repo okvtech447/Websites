@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KAYMODE Fashion House | Premium Bespoke & Ready-to-Wear</title>
+    <meta name="description" content="Professional bespoke tailoring and fashion apparel by KAYMODE Fashion House. Serving nationwide from Ado-Ekiti.">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary: #000000;
+            --secondary: #FFFFFF;
+            --accent: #E63946;
+            --muted-accent: #f8d7da;
+            --light-gray: #f9f9f9;
+            --medium-gray: #e0e0e0;
+            --dark-gray: #222222;
+            --text-gray: #555555;
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            --container-width: 1200px;
+        }
+
+        /* --- RESET & BASE --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            line-height: 1.7; 
+            color: var(--text-gray); 
+            background-color: var(--secondary);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 { 
+            font-family: 'Playfair Display', serif; 
+            color: var(--primary); 
+            line-height: 1.2;
+        }
+
+        a { text-decoration: none; color: inherit; transition: var(--transition); }
+        ul { list-style: none; }
+        img { max-width: 100%; display: block; }
+
+        /* --- SHARED COMPONENTS --- */
+        .container { max-width: var(--container-width); margin: 0 auto; padding: 0 25px; }
+        .section-padding { padding: 100px 0; }
+        .text-center { text-align: center; }
+        .section-title { font-size: clamp(2rem, 5vw, 2.8rem); margin-bottom: 15px; }
+        .subtitle { max-width: 600px; margin: 0 auto 50px; font-weight: 300; }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 32px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.85rem;
+            border-radius: 0; /* High fashion sharp edges */
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary { background: var(--primary); color: var(--secondary); }
+        .btn-primary:hover { background: var(--accent); transform: translateY(-3px); }
+        
+        .btn-outline { border: 1px solid var(--secondary); color: var(--secondary); background: transparent; }
+        .btn-outline:hover { background: var(--secondary); color: var(--primary); }
+
+        /* --- TOP BAR --- */
+        .top-bar {
+            background: var(--primary);
+            color: white;
+            padding: 10px 0;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .top-bar-content { display: flex; justify-content: space-between; align-items: center; }
+        .top-bar-info span { margin-right: 20px; }
+        .top-bar-info i { margin-right: 5px; color: var(--accent); }
+
+        /* --- HEADER --- */
+        header {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+        }
+
+        nav { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 900; letter-spacing: -1px; }
+        .logo span { color: var(--accent); }
+
+        .nav-links { display: flex; gap: 35px; }
+        .nav-links a { font-weight: 500; font-size: 0.9rem; color: var(--primary); }
+        .nav-links a:hover { color: var(--accent); }
+
+        .menu-toggle { display: none; cursor: pointer; font-size: 1.4rem; }
+
+        /* --- HERO --- */
+        .hero {
+            height: 90vh;
+            min-height: 600px;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                        url('https://images.unsplash.com/photo-1441998852351-7666618580b6?auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            color: white;
+        }
+
+        .hero-content { max-width: 850px; animation: fadeInUp 1s ease; }
+        .hero-content h1 { font-size: clamp(2.5rem, 8vw, 4.5rem); color: white; margin-bottom: 25px; }
+        .hero-content p { font-size: 1.2rem; margin-bottom: 40px; font-weight: 300; opacity: 0.9; }
+        .hero-btns { display: flex; gap: 20px; }
+
+        /* --- NEW: SHOP / COLLECTIONS SECTION --- */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        .product-card { position: relative; transition: var(--transition); }
+        .product-img-wrapper { overflow: hidden; position: relative; background: #f0f0f0; }
+        .product-card img { width: 100%; height: 350px; object-fit: cover; transition: var(--transition); }
+        .product-card:hover img { transform: scale(1.05); }
+        .product-badge {
+            position: absolute; top: 15px; left: 15px; background: var(--accent);
+            color: white; padding: 4px 12px; font-size: 0.7rem; font-weight: 600;
+        }
+        .product-info { padding: 20px 0; }
+        .product-info h3 { font-size: 1.1rem; margin-bottom: 5px; font-family: 'Poppins', sans-serif; }
+        .price { color: var(--accent); font-weight: 600; }
+        .add-to-cart { 
+            position: absolute; bottom: 100px; left: 0; width: 100%; 
+            background: rgba(0,0,0,0.8); color: white; padding: 12px; 
+            text-align: center; opacity: 0; transition: var(--transition);
+        }
+        .product-card:hover .add-to-cart { opacity: 1; transform: translateY(-10px); }
+
+        /* --- ABOUT (IMPROVED) --- */
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+        .about-img { position: relative; }
+        .about-img img { width: 100%; height: 500px; object-fit: cover; }
+        .about-img::after {
+            content: ''; position: absolute; top: 30px; left: -30px; 
+            width: 100%; height: 100%; border: 10px solid var(--light-gray); z-index: -1;
+        }
+
+        /* --- FEATURES (WHY US) --- */
+        .why-us { background: var(--light-gray); }
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
+        .feature-card { background: white; padding: 50px 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.03); }
+        .feature-card i { font-size: 2.5rem; color: var(--accent); margin-bottom: 25px; display: block; }
+
+        /* --- NEW: FASHION BLOG SECTION --- */
+        .blog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
+        .blog-card { background: white; border-bottom: 2px solid transparent; transition: var(--transition); }
+        .blog-card:hover { border-color: var(--accent); }
+        .blog-img { height: 250px; overflow: hidden; }
+        .blog-img img { width: 100%; height: 100%; object-fit: cover; }
+        .blog-content { padding: 25px 0; }
+        .blog-date { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; display: block; }
+        .blog-card h3 { font-size: 1.4rem; margin-bottom: 15px; }
+
+        /* --- TESTIMONIALS --- */
+        .testimonials { background: var(--dark-gray); color: white; }
+        .testimonials h2 { color: white; }
+        .testimonial-container { overflow: hidden; position: relative; padding: 20px 0; }
+        .testimonial-slider { display: flex; gap: 30px; animation: slideInfinite 30s linear infinite; }
+        .testimonial-card { 
+            min-width: 400px; background: #2a2a2a; padding: 40px; 
+            border-left: 5px solid var(--accent); 
+        }
+        @keyframes slideInfinite {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* --- CONTACT --- */
+        .contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 60px; }
+        .contact-form .form-group { margin-bottom: 20px; }
+        .contact-form input, .contact-form select, .contact-form textarea {
+            width: 100%; padding: 15px; border: 1px solid var(--medium-gray); 
+            background: var(--light-gray); outline: none; transition: var(--transition);
+        }
+        .contact-form input:focus { border-color: var(--accent); background: white; }
+
+        /* --- WIDGETS --- */
+        .floating-widgets { position: fixed; bottom: 30px; right: 30px; z-index: 999; display: flex; flex-direction: column; gap: 15px; }
+        .widget { 
+            width: 60px; height: 60px; border-radius: 50%; display: flex; 
+            align-items: center; justify-content: center; color: white; 
+            font-size: 1.5rem; box-shadow: 0 5px 20px rgba(0,0,0,0.2); 
+        }
+        .widget.whatsapp { background: #25d366; }
+        .widget.back-to-top { background: var(--primary); visibility: hidden; opacity: 0; cursor: pointer; }
+        .widget.back-to-top.show { visibility: visible; opacity: 1; }
+
+        /* --- FOOTER --- */
+        footer { background: #0a0a0a; color: #999; padding: 80px 0 30px; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; }
+        .footer-col h4 { color: white; margin-bottom: 25px; font-size: 1.2rem; }
+        .footer-col ul li { margin-bottom: 12px; }
+        .footer-bottom { margin-top: 60px; padding-top: 30px; border-top: 1px solid #222; text-align: center; }
+
+        /* --- MOBILE RESPONSIVENESS --- */
+        @media (max-width: 992px) {
+            .nav-links { display: none; }
+            .menu-toggle { display: block; }
+            .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+            .hero-content h1 { font-size: 3rem; }
+            .top-bar-content { flex-direction: column; text-align: center; gap: 10px; }
+            
+            /* Mobile Nav Active Class */
+            .nav-links.active {
+                display: flex; flex-direction: column; position: absolute;
+                top: 80px; left: 0; width: 100%; background: white;
+                padding: 40px; box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-btns { flex-direction: column; }
+            .testimonial-card { min-width: 280px; }
+            .section-padding { padding: 60px 0; }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <div class="container top-bar-content">
+            <div class="top-bar-info">
+                <span><i class="fas fa-phone"></i> +234 812 998 3344</span>
+                <span><i class="fas fa-envelope"></i> kaymodefashion@gmail.com</span>
+            </div>
+            <div class="top-bar-social">
+                <a href="#"><i class="fab fa-instagram"></i></a> &nbsp;
+                <a href="#"><i class="fab fa-tiktok"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">KAY<span>MODE.</span></a>
+                <ul class="nav-links" id="navMenu">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">Our Story</a></li>
+                    <li><a href="#shop">Shop</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <div class="menu-toggle" onclick="toggleMenu()">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>The Art of Bespoke Tailoring.</h1>
+                <p>From conceptual design to the final stitch, we craft apparel that defines your personality and fits your lifestyle.</p>
+                <div class="hero-btns">
+                    <a href="#shop" class="btn btn-primary">Shop Collection</a>
+                    <a href="https://wa.me/2348129983344" class="btn btn-outline">WhatsApp Consultation</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding" id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-img">
+                    <img src="https://images.unsplash.com/photo-1598554747436-c9293d6a588f?auto=format&fit=crop&w=800&q=80" alt="Tailoring Process">
+                </div>
+                <div class="about-content">
+                    <h2 class="section-title">Defining Nigerian Luxury Since 2015</h2>
+                    <p class="subtitle" style="margin-left: 0;">We solve the struggle of ill-fitting, generic clothing.</p>
+                    <p>At KAYMODE, we merge traditional craftsmanship with contemporary aesthetics. Every garment is a unique masterpiece, meticulously measured and sewn to ensure a silhouette that is exclusively yours.</p>
+                    <br>
+                    <p>Whether it's a corporate suit that commands respect or a traditional attire that celebrates culture, our Ekiti-based studio delivers excellence nationwide.</p>
+                    <a href="#contact" class="btn btn-primary" style="margin-top: 30px;">Meet Our Designers</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding" id="shop">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="section-title">Ready-to-Wear</h2>
+                <p class="subtitle">Premium pieces from our latest seasonal collection available for immediate purchase.</p>
+            </div>
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-img-wrapper">
+                        <span class="product-badge">New Arrival</span>
+                        <img src="https://images.unsplash.com/photo-1617137984095-74e4e5e3613f?auto=format&fit=crop&w=500&q=80" alt="Men's Blazer">
+                        <a href="#contact" class="btn add-to-cart">Order Now</a>
+                    </div>
+                    <div class="product-info text-center">
+                        <h3>Midnight Velvet Blazer</h3>
+                        <p class="price">₦45,000</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=500&q=80" alt="Cocktail Dress">
+                        <a href="#contact" class="btn add-to-cart">Order Now</a>
+                    </div>
+                    <div class="product-info text-center">
+                        <h3>Floral Silk Cocktail Dress</h3>
+                        <p class="price">₦38,500</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img-wrapper">
+                        <span class="product-badge">Top Seller</span>
+                        <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=500&q=80" alt="Traditional Kaftan">
+                        <a href="#contact" class="btn add-to-cart">Order Now</a>
+                    </div>
+                    <div class="product-info text-center">
+                        <h3>Modern Ankara Kaftan</h3>
+                        <p class="price">₦25,000</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=500&q=80" alt="Executive Suit">
+                        <a href="#contact" class="btn add-to-cart">Order Now</a>
+                    </div>
+                    <div class="product-info text-center">
+                        <h3>Italian Wool 3-Piece Suit</h3>
+                        <p class="price">₦120,000</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="why-us section-padding">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="section-title">The KAYMODE Advantage</h2>
+                <p class="subtitle">Why our clients trust us with their most important moments.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card text-center">
+                    <i class="fas fa-ruler-combined"></i>
+                    <h3>Precision Fit</h3>
+                    <p>We use a 32-point measurement system to ensure your garment feels like a second skin.</p>
+                </div>
+                <div class="feature-card text-center">
+                    <i class="fas fa-crown"></i>
+                    <h3>Luxury Fabrics</h3>
+                    <p>Sourced from the best mills in Italy, Turkey, and premium local textile weavers.</p>
+                </div>
+                <div class="feature-card text-center">
+                    <i class="fas fa-shipping-fast"></i>
+                    <h3>Global Delivery</h3>
+                    <p>Based in Ado-Ekiti, we ship your custom designs to Lagos, Abuja, and internationally.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding" id="services">
+        <div class="container">
+            <h2 class="text-center section-title">Signature Services</h2>
+            <div class="product-grid" style="margin-top: 50px;">
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=600&q=80" alt="Corporate" style="height: 450px;">
+                    <div class="product-info">
+                        <h3>Corporate Bespoke</h3>
+                        <p>Executive suits and shirts for the boardroom elite.</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1549416878-b9ca35c2d47b?auto=format&fit=crop&w=600&q=80" alt="Bridal" style="height: 450px;">
+                    <div class="product-info">
+                        <h3>Bridal & Gala</h3>
+                        <p>Breathtaking gowns for weddings and red-carpet events.</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&w=600&q=80" alt="Trad" style="height: 450px;">
+                    <div class="product-info">
+                        <h3>Modern Traditional</h3>
+                        <p>Agbada, Senator wears, and Kaftans with a modern edge.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding" id="blog">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="section-title">Fashion Journal</h2>
+                <p class="subtitle">Tips, trends, and style advice from our lead designers.</p>
+            </div>
+            <div class="blog-grid">
+                <article class="blog-card">
+                    <div class="blog-img">
+                        <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=500&q=60" alt="Blog 1">
+                    </div>
+                    <div class="blog-content">
+                        <span class="blog-date">Oct 12, 2025 • Style Guide</span>
+                        <h3>5 Ways to Style Your Blazer for Semi-Formal Events</h3>
+                        <p>Transitioning from the office to a dinner party has never been easier...</p>
+                    </div>
+                </article>
+                <article class="blog-card">
+                    <div class="blog-img">
+                        <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=500&q=60" alt="Blog 2">
+                    </div>
+                    <div class="blog-content">
+                        <span class="blog-date">Sept 28, 2025 • Fabrics</span>
+                        <h3>Why Italian Wool is the King of Suit Fabrics</h3>
+                        <p>Understanding the weave and the "Super" numbers when choosing your suit...</p>
+                    </div>
+                </article>
+                <article class="blog-card">
+                    <div class="blog-img">
+                        <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=500&q=60" alt="Blog 3">
+                    </div>
+                    <div class="blog-content">
+                        <span class="blog-date">Aug 15, 2025 • Trends</span>
+                        <h3>The Return of Bold Prints in Men's Fashion</h3>
+                        <p>How African prints are dominating the 2025 international runways...</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding testimonials">
+        <div class="container">
+            <h2 class="text-center section-title">Client Stories</h2>
+            <div class="testimonial-container">
+                <div class="testimonial-slider">
+                    <div class="testimonial-card">
+                        <p>"The best tailoring experience in Ekiti. My wedding suit was perfect!"</p>
+                        <h5 style="margin-top:20px;">- Dr. Segun A.</h5>
+                    </div>
+                    <div class="testimonial-card">
+                        <p>"They delivered my gown to Lagos in 48 hours. The fit was flawless."</p>
+                        <h5 style="margin-top:20px;">- Mrs. Tolu O.</h5>
+                    </div>
+                    <div class="testimonial-card">
+                        <p>"KAYMODE understands modern style better than any house I've used."</p>
+                        <h5 style="margin-top:20px;">- Prince Williams</h5>
+                    </div>
+                    <div class="testimonial-card">
+                        <p>"The best tailoring experience in Ekiti. My wedding suit was perfect!"</p>
+                        <h5 style="margin-top:20px;">- Dr. Segun A.</h5>
+                    </div>
+                    <div class="testimonial-card">
+                        <p>"They delivered my gown to Lagos in 48 hours. The fit was flawless."</p>
+                        <h5 style="margin-top:20px;">- Mrs. Tolu O.</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding" id="contact">
+        <div class="container">
+            <div class="contact-grid">
+                <div>
+                    <h2 class="section-title">Start Your Journey</h2>
+                    <p style="margin-bottom: 30px;">Book a fitting or inquire about our ready-to-wear pieces. We respond within 2 hours.</p>
+                    <p><i class="fas fa-map-marker-alt"></i> &nbsp; 7 Style Street, Oja-Oba, Ado-Ekiti</p>
+                    <p><i class="fas fa-phone"></i> &nbsp; +234 812 998 3344</p>
+                    <div class="social-links" style="margin-top: 30px; font-size: 1.5rem; display: flex; gap: 20px;">
+                        <a href="#" style="color:var(--accent)"><i class="fab fa-instagram"></i></a>
+                        <a href="#" style="color:var(--primary)"><i class="fab fa-facebook"></i></a>
+                        <a href="#" style="color:var(--primary)"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <input type="text" placeholder="Your Full Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Email Address" required>
+                    </div>
+                    <div class="form-group">
+                        <select required>
+                            <option value="">Interested in...</option>
+                            <option>Bespoke Tailoring</option>
+                            <option>Ready-to-Wear</option>
+                            <option>Wedding Gowns</option>
+                            <option>Bulk Orders</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <textarea rows="4" placeholder="How can we help you?" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send Inquiry</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <a href="#" class="logo" style="color:white">KAY<span>MODE.</span></a>
+                    <p style="margin-top:20px">Excellence in tailoring, transforming identity through premium fashion design since 2015.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Collections</h4>
+                    <ul>
+                        <li><a href="#">Men's Corporate</a></li>
+                        <li><a href="#">Bridal Suite</a></li>
+                        <li><a href="#">Traditional Wear</a></li>
+                        <li><a href="#">Accessories</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Information</h4>
+                    <ul>
+                        <li><a href="#about">Our Story</a></li>
+                        <li><a href="#blog">Style Blog</a></li>
+                        <li><a href="#">Size Guide</a></li>
+                        <li><a href="#">Shipping Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2025 KAYMODE Fashion House. All Rights Reserved. Engineered for Style.
+            </div>
+        </div>
+    </footer>
+
+    <div class="floating-widgets">
+        <div class="widget back-to-top" id="backToTop" onclick="scrollToTop()">
+            <i class="fas fa-chevron-up"></i>
+        </div>
+        <a href="https://wa.me/2348129983344" class="widget whatsapp" title="Chat on WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <script>
+        // Toggle Mobile Menu
+        function toggleMenu() {
+            const menu = document.getElementById('navMenu');
+            menu.classList.toggle('active');
+        }
+
+        // Close menu when link is clicked
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('navMenu').classList.remove('active');
+            });
+        });
+
+        // Show/Hide Back to Top Button
+        window.onscroll = function() {
+            const btn = document.getElementById('backToTop');
+            if (document.body.scrollTop > 500 || document.documentElement.scrollTop > 500) {
+                btn.classList.add('show');
+            } else {
+                btn.classList.remove('show');
+            }
+        };
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Handle Form Submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Your request has been sent! A consultant will contact you shortly.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>

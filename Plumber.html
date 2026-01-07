@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlowGuard Plumbing & Drain | Expert Plumbers in Lagos, Ogun & Ibadan</title>
+    <meta name="description" content="Professional plumbing services by FlowGuard. Emergency repairs, leak detection, and pipe installations across Lagos. Available 24/7 for your home or business!">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;800&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* --- PLUMBING BRANDING CSS VARIABLES --- */
+        :root {
+            --primary: #0F172A;      /* Deep Navy */
+            --secondary: #F8FAFC;    /* Light Slate */
+            --accent: #0EA5E9;       /* Water Blue */
+            --accent-hover: #0284C7; /* Darker Blue */
+            --success: #10B981;      /* Clean Teal */
+            --text-dark: #1E293B;
+            --text-light: #64748B;
+            --white: #ffffff;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --container-width: 1200px;
+        }
+
+        /* --- BASE STYLES --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--secondary);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .section-padding {
+            padding: clamp(60px, 10vw, 100px) 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: clamp(40px, 8vw, 60px);
+        }
+
+        .section-title h2 {
+            font-size: clamp(2rem, 5vw, 2.5rem);
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .underline {
+            width: 70px;
+            height: 4px;
+            background: var(--accent);
+            margin: 0 auto;
+            border-radius: 2px;
+        }
+
+        /* --- BUTTONS --- */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 32px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* --- HEADER & NAVIGATION --- */
+        header {
+            background: var(--white);
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .top-bar {
+            background: var(--primary);
+            color: var(--white);
+            padding: 10px 0;
+            font-size: 0.85rem;
+        }
+
+        .top-bar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: var(--accent);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            min-height: 90vh;
+            background: linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.8)), 
+                        url('https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=1920') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            color: var(--white);
+            padding-top: 100px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            margin-bottom: 25px;
+        }
+
+        .hero p {
+            font-size: clamp(1.1rem, 2vw, 1.25rem);
+            margin-bottom: 40px;
+            max-width: 700px;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        /* --- ABOUT & STATS --- */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .experience-badge {
+            position: absolute;
+            bottom: -20px;
+            right: -20px;
+            background: var(--success);
+            color: var(--white);
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .experience-badge span {
+            display: block;
+            font-size: 2rem;
+            font-weight: 800;
+            line-height: 1;
+        }
+
+        .license-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .license-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .license-item i { color: var(--accent); }
+
+        /* --- SERVICES CARDS --- */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border-bottom: 4px solid transparent;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            border-bottom-color: var(--accent);
+        }
+
+        .service-info {
+            padding: 30px;
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+
+        /* --- CONTACT SECTION --- */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 60px;
+        }
+
+        .contact-form {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #E2E8F0;
+            border-radius: 6px;
+            font-family: inherit;
+        }
+
+        /* --- FLOATING ACTIONS --- */
+        .floating-contact {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 999;
+        }
+
+        .float-btn {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.4rem;
+            box-shadow: var(--shadow-lg);
+            transition: var(--transition);
+        }
+
+        .float-whatsapp { background: #25D366; }
+        .float-phone { background: var(--accent); }
+
+        /* --- FOOTER --- */
+        footer {
+            background: var(--primary);
+            color: var(--white);
+            padding: 80px 0 30px;
+        }
+
+        .footer-links a { color: #94A3B8; text-decoration: none; }
+        .footer-links a:hover { color: var(--accent); }
+
+        /* --- MOBILE RESPONSIVENESS --- */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: var(--white);
+                flex-direction: column;
+                padding: 40px;
+                transition: 0.4s;
+            }
+            .nav-links.active { left: 0; }
+            .hamburger { display: block; }
+            .about-grid, .contact-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="top-bar">
+            <div class="container">
+                <div><i class="fas fa-clock"></i> 24/7 Emergency Service Available</div>
+                <div><i class="fas fa-phone"></i> +234 813 000 0000</div>
+            </div>
+        </div>
+        <nav class="nav-container container">
+            <a href="#home" class="logo">
+                <i class="fas fa-faucet-drip"></i> FlowGuard
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#process">Our Way</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger" id="menuBtn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Reliable Plumbing Solutions You Can Trust</h1>
+                <p>From emergency leak repairs to complete industrial piping installations. We keep your water flowing and your home dry with 24/7 expert support.</p>
+                <div class="hero-btns">
+                    <a href="#contact" class="btn btn-primary">Request a Plumber</a>
+                    <a href="https://wa.me/2348130000000" class="btn" style="background: #25D366; color: white;">
+                        <i class="fab fa-whatsapp" style="margin-right: 10px;"></i> WhatsApp Emergency
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding" id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1504148455328-c376907d081c?auto=format&fit=crop&q=80&w=800" alt="Plumbing Team">
+                    <div class="experience-badge">
+                        <span>12+</span> Years Exp.
+                    </div>
+                </div>
+                <div class="about-text">
+                    <div class="section-title" style="text-align: left; margin-bottom: 25px;">
+                        <h2>Excellence in Every Pipe</h2>
+                        <div class="underline" style="margin: 0;"></div>
+                    </div>
+                    <p>FlowGuard Plumbing & Drain Services is your premier choice for residential and commercial plumbing. We specialize in diagnosing complex issues that others miss, using state-of-the-art leak detection technology.</p>
+                    <p style="margin-top: 15px;">Whether it's a clogged drain, a burst pipe, or a new bathroom renovation, our certified plumbers deliver clean, efficient, and lasting results.</p>
+                    
+                    <div class="license-list">
+                        <div class="license-item"><i class="fas fa-check-circle"></i> Licensed Master Plumbers</div>
+                        <div class="license-item"><i class="fas fa-check-circle"></i> Upfront Pricing</div>
+                        <div class="license-item"><i class="fas fa-check-circle"></i> 24/7 Availability</div>
+                        <div class="license-item"><i class="fas fa-check-circle"></i> 100% Insured</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding" style="background: #f1f5f9;" id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Plumbing Services</h2>
+                <div class="underline"></div>
+            </div>
+            <div class="grid-3">
+                <div class="service-card">
+                    <div class="service-info">
+                        <div class="service-icon"><i class="fas fa-tools"></i></div>
+                        <h3>General Repairs</h3>
+                        <p>Fixing faucets, toilets, and showers. We handle all minor and major household plumbing repairs with precision.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-info">
+                        <div class="service-icon"><i class="fas fa-search-location"></i></div>
+                        <h3>Leak Detection</h3>
+                        <p>Advanced thermal and acoustic leak detection to find hidden pipe bursts behind walls or underground.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-info">
+                        <div class="service-icon"><i class="fas fa-tint-slash"></i></div>
+                        <h3>Drain Cleaning</h3>
+                        <p>Professional hydro-jetting and rooter services to clear the toughest grease and root blockages.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-info">
+                        <div class="service-icon"><i class="fas fa-hot-tub"></i></div>
+                        <h3>Water Heaters</h3>
+                        <p>Installation and maintenance of solar, gas, and electric water heating systems for homes and hotels.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-info">
+                        <div class="service-icon"><i class="fas fa-building"></i></div>
+                        <h3>Industrial Piping</h3>
+                        <p>Comprehensive plumbing design and installation for factories, warehouses, and high-rise buildings.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-info">
+                        <div class="service-icon"><i class="fas fa-shower"></i></div>
+                        <h3>Bathroom Reno</h3>
+                        <p>Modernizing your space with luxury fixtures and efficient water-saving drainage systems.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding" id="process">
+        <div class="container">
+            <div class="section-title">
+                <h2>How We Work</h2>
+                <div class="underline"></div>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; text-align: center;">
+                <div>
+                    <h3 style="color: var(--accent); font-size: 2.5rem; margin-bottom: 15px;">01</h3>
+                    <h4>Diagnosis</h4>
+                    <p>We arrive on time and assess the issue thoroughly.</p>
+                </div>
+                <div>
+                    <h3 style="color: var(--accent); font-size: 2.5rem; margin-bottom: 15px;">02</h3>
+                    <h4>Flat Quote</h4>
+                    <p>Transparent pricing before any work begins. No hidden fees.</p>
+                </div>
+                <div>
+                    <h3 style="color: var(--accent); font-size: 2.5rem; margin-bottom: 15px;">03</h3>
+                    <h4>Clean Fix</h4>
+                    <p>Expert repair while keeping your home spotless.</p>
+                </div>
+                <div>
+                    <h3 style="color: var(--accent); font-size: 2.5rem; margin-bottom: 15px;">04</h3>
+                    <h4>Warranty</h4>
+                    <p>All parts and labor are backed by our service guarantee.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding" id="contact" style="background: white;">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-form">
+                    <h3>Get a Quote / Book Service</h3>
+                    <p style="margin-bottom: 30px;">Describe your plumbing emergency or project below.</p>
+                    <form id="plumbingForm">
+                        <div class="form-group"><input type="text" placeholder="Your Name" required></div>
+                        <div class="form-group"><input type="tel" placeholder="Phone Number" required></div>
+                        <div class="form-group">
+                            <select required>
+                                <option value="">Type of Service</option>
+                                <option>Emergency Repair</option>
+                                <option>Drain Cleaning</option>
+                                <option>Installation</option>
+                                <option>Inspection</option>
+                            </select>
+                        </div>
+                        <div class="form-group"><textarea rows="4" placeholder="Briefly describe the issue..."></textarea></div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Dispatch a Plumber</button>
+                    </form>
+                    <div id="formFeedback" style="display:none; margin-top:20px; color: var(--success); font-weight: 600;">
+                        <i class="fas fa-check-circle"></i> Request received! We will call you in 15 minutes.
+                    </div>
+                </div>
+                <div class="contact-info">
+                    <h3>Contact Info</h3>
+                    <div style="margin: 30px 0;">
+                        <p style="margin-bottom: 20px;"><i class="fas fa-map-marker-alt" style="color: var(--accent); width: 25px;"></i> 22 Pipeline Avenue, Ikeja, Lagos</p>
+                        <p style="margin-bottom: 20px;"><i class="fas fa-phone-alt" style="color: var(--accent); width: 25px;"></i> +234 813 000 0000</p>
+                        <p style="margin-bottom: 20px;"><i class="fas fa-envelope" style="color: var(--accent); width: 25px;"></i> help@flowguardplumbing.com</p>
+                    </div>
+                    <h3>Available In:</h3>
+                    <p style="color: var(--text-light); margin-top: 10px;">Lagos Island, Mainland, Abeokuta, and Ibadan Central.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div style="text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 30px;">
+                <p>&copy; 2025 <strong>FlowGuard Plumbing Services</strong>. Licensed & Bonded.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="floating-contact">
+        <a href="tel:+2348130000000" class="float-btn float-phone"><i class="fas fa-phone"></i></a>
+        <a href="https://wa.me/2348130000000" class="float-btn float-whatsapp"><i class="fab fa-whatsapp"></i></a>
+    </div>
+
+    <script>
+        const menuBtn = document.getElementById('menuBtn');
+        const navLinks = document.getElementById('navLinks');
+        
+        menuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        document.getElementById('plumbingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            document.getElementById('formFeedback').style.display = 'block';
+            this.reset();
+        });
+    </script>
+</body>
+</html>

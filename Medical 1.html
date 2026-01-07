@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LifeCare Medical Centre | Quality Healthcare in Akure & Ekiti</title>
+    <meta name="description" content="Professional healthcare services in Ondo and Ekiti State. Book a consultation with LifeCare Medical Centre today.">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary: #0D6EFD;
+            --primary-dark: #0a58ca;
+            --secondary: #E9F2FF;
+            --accent: #28A745;
+            --danger: #dc3545;
+            --dark: #1a1a1a;
+            --light: #ffffff;
+            --gray-100: #f8f9fa;
+            --gray-200: #e9ecef;
+            --gray-600: #6c757d;
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            --shadow: 0 10px 30px rgba(0,0,0,0.08);
+            --section-padding: 100px 5%;
+        }
+
+        /* --- Global Reset --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.7;
+            color: var(--dark);
+            overflow-x: hidden;
+            background-color: var(--light);
+        }
+
+        h1, h2, h3, h4, .nav-logo {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.2;
+        }
+
+        img { max-width: 100%; height: auto; display: block; }
+
+        /* --- Header & Navigation --- */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: var(--light);
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        .top-bar {
+            background: var(--primary);
+            color: white;
+            padding: 10px 5%;
+            display: flex;
+            justify-content: flex-end;
+            gap: 25px;
+            font-size: 0.85rem;
+            transition: var(--transition);
+        }
+
+        header.scrolled .top-bar { height: 0; padding: 0; overflow: hidden; }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo img { height: 45px; transition: var(--transition); }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 35px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after { width: 100%; }
+        .nav-links a:hover { color: var(--primary); }
+
+        .burger { display: none; cursor: pointer; font-size: 1.5rem; color: var(--primary); }
+
+        /* --- Hero Section --- */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), 
+                        url('https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=2000');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 120px 5% 60px;
+        }
+
+        .hero-content { max-width: 800px; margin: 0 auto; text-align: center; }
+        .hero-content h1 { font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 25px; font-weight: 700; }
+        .hero-content p { font-size: 1.25rem; margin-bottom: 40px; opacity: 0.95; }
+
+        /* --- Buttons --- */
+        .btn-group { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+        .btn {
+            padding: 16px 32px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-primary { background: var(--primary); color: white; }
+        .btn-accent { background: var(--accent); color: white; }
+        .btn-outline { border: 2px solid white; color: white; }
+        .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+
+        /* --- Common Section Styles --- */
+        section { padding: var(--section-padding); max-width: 1400px; margin: 0 auto; }
+        .section-title { text-align: center; margin-bottom: 70px; }
+        .section-title h2 { font-size: 2.5rem; color: var(--dark); position: relative; display: inline-block; padding-bottom: 15px; }
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        /* --- Emergency Info Section (NEW) --- */
+        .emergency-banner {
+            background: var(--danger);
+            color: white;
+            padding: 40px 5%;
+            margin: 0;
+            max-width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .emergency-banner h2 { font-size: 1.8rem; }
+
+        /* --- Services Grid --- */
+        .services-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+            gap: 30px; 
+        }
+        .service-item { 
+            background: white; 
+            border-radius: 20px; 
+            overflow: hidden; 
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid var(--gray-200);
+        }
+        .service-item:hover { transform: translateY(-10px); }
+        .service-img { height: 230px; background-size: cover; background-position: center; }
+        .service-info { padding: 30px; }
+        .service-info h3 { margin-bottom: 15px; color: var(--primary); }
+
+        /* --- Doctors Section (NEW) --- */
+        .doctors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+        }
+        .doctor-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        .doctor-card:hover { transform: scale(1.03); }
+        .doctor-img { height: 300px; width: 100%; object-fit: cover; }
+        .doctor-info { padding: 25px; }
+        .doctor-info h4 { color: var(--primary); margin-bottom: 5px; }
+        .doctor-info span { color: var(--gray-600); font-size: 0.9rem; font-weight: 600; text-transform: uppercase; }
+
+        /* --- Appointments Section (NEW) --- */
+        .appointment-section { background: var(--gray-100); max-width: 100%; }
+        .appointment-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .booking-form {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+        }
+
+        /* --- Patient Resources (NEW) --- */
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .resource-item {
+            padding: 25px;
+            background: var(--secondary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            text-decoration: none;
+            color: var(--dark);
+            transition: var(--transition);
+        }
+        .resource-item:hover { background: var(--primary); color: white; }
+        .resource-item i { font-size: 2rem; }
+
+        /* --- Gallery --- */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .gallery-item {
+            height: 280px;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+        }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: var(--transition); }
+        .gallery-item:hover img { transform: scale(1.1); filter: brightness(70%); }
+
+        /* --- Form Elements --- */
+        .form-group { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 8px; font-weight: 600; }
+        input, select, textarea {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid var(--gray-200);
+            border-radius: 8px;
+            font-family: inherit;
+            transition: var(--transition);
+        }
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(13, 110, 253, 0.1);
+        }
+
+        /* --- Floating Widgets --- */
+        .widgets { position: fixed; bottom: 30px; right: 30px; display: flex; flex-direction: column; gap: 15px; z-index: 1001; }
+        .widget { 
+            width: 55px; height: 55px; border-radius: 50%; 
+            display: flex; align-items: center; justify-content: center; 
+            color: white; font-size: 22px; text-decoration: none; 
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2); transition: var(--transition);
+        }
+        .w-whatsapp { background: #25D366; }
+        .w-phone { background: var(--primary); }
+        .widget:hover { transform: scale(1.1) rotate(10deg); }
+
+        /* --- Footer --- */
+        footer { background: var(--dark); color: white; padding: 80px 5% 30px; }
+        .footer-grid { 
+            display: grid; 
+            grid-template-columns: 2fr 1fr 1fr 1.5fr; 
+            gap: 50px; 
+            max-width: 1400px;
+            margin: 0 auto 60px;
+        }
+        .footer-col h4 { color: var(--primary); margin-bottom: 25px; font-size: 1.2rem; }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 12px; }
+        .footer-col a { color: #aaa; text-decoration: none; transition: var(--transition); }
+        .footer-col a:hover { color: white; padding-left: 5px; }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 1024px) {
+            .appointment-container, .footer-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                height: 100vh;
+                width: 80%;
+                background: white;
+                flex-direction: column;
+                padding: 100px 40px;
+                transition: 0.5s;
+                box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+            }
+            .nav-links.active { right: 0; }
+            .burger { display: block; z-index: 1001; }
+            .hero-content h1 { font-size: 2.8rem; }
+            .appointment-container, .footer-grid, .about-grid { grid-template-columns: 1fr; }
+            .section-padding { padding: 60px 5%; }
+            .top-bar { display: none; }
+        }
+
+        /* --- Animations --- */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .hero-content { animation: fadeInUp 0.8s ease-out; }
+    </style>
+</head>
+<body>
+
+    <header id="header">
+        <div class="top-bar">
+            <span><i class="fas fa-clock"></i> 24/7 Emergency Care</span>
+            <span><i class="fas fa-phone"></i> +234 706 123 4567</span>
+            <span><i class="fas fa-map-marker-alt"></i> Akure & Ekiti</span>
+        </div>
+        <nav>
+            <div class="logo">
+                <img src="https://via.placeholder.com/180x60?text=LifeCare+Medical" alt="LifeCare Logo">
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Specialties</a></li>
+                <li><a href="#doctors">Our Doctors</a></li>
+                <li><a href="#appointments">Appointments</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="burger" onclick="toggleMenu()">
+                <i class="fas fa-bars" id="burgerIcon"></i>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Expert Healthcare You Can Trust</h1>
+            <p>Your health is our life's work. Providing advanced medical solutions with a compassionate heart across Ondo and Ekiti State.</p>
+            <div class="btn-group">
+                <a href="#appointments" class="btn btn-primary">Book an Appointment</a>
+                <a href="#services" class="btn btn-outline">Our Services</a>
+            </div>
+        </div>
+    </section>
+
+    <div class="emergency-banner">
+        <div>
+            <h2>Emergency Cases?</h2>
+            <p>Our emergency response team is available 24 hours a day, 7 days a week.</p>
+        </div>
+        <a href="tel:+2347061234567" class="btn btn-light" style="background: white; color: var(--danger);">
+            <i class="fas fa-ambulance"></i> Call +234 706 123 4567
+        </a>
+    </div>
+
+    <section id="about">
+        <div class="about-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;">
+            <div class="about-img">
+                <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=800" alt="Medical Facility" style="border-radius: 20px; box-shadow: 20px 20px 0 var(--secondary);">
+            </div>
+            <div class="about-info">
+                <div class="section-title" style="text-align: left;">
+                    <h2>Our Mission & Vision</h2>
+                </div>
+                <p><strong>LifeCare Medical Centre</strong> has been at the forefront of medical excellence for over a decade. We believe that quality healthcare should be accessible to everyone.</p>
+                <p style="margin-top: 20px;">Our facilities are equipped with the latest diagnostic technology, ensuring that patients in Akure and Ekiti receive international-standard treatment close to home.</p>
+                <ul style="margin-top: 20px; list-style: none;">
+                    <li><i class="fas fa-check-circle" style="color: var(--accent);"></i> 24/7 Critical Care Unit</li>
+                    <li><i class="fas fa-check-circle" style="color: var(--accent);"></i> Advanced Diagnostic Imaging</li>
+                    <li><i class="fas fa-check-circle" style="color: var(--accent);"></i> Dedicated Surgical Suites</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" style="background: var(--gray-100); max-width: 100%;">
+        <div class="section-title">
+            <h2>Medical Specialties</h2>
+            <p>Providing specialized care across various branches of medicine.</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-item">
+                <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80&w=400');"></div>
+                <div class="service-info">
+                    <h3>Internal Medicine</h3>
+                    <p>Expert management of chronic conditions and complex diagnostic challenges.</p>
+                </div>
+            </div>
+            <div class="service-item">
+                <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&q=80&w=400');"></div>
+                <div class="service-info">
+                    <h3>General Surgery</h3>
+                    <p>Minimally invasive and major surgical procedures performed by top surgeons.</p>
+                </div>
+            </div>
+            <div class="service-item">
+                <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1581594634402-29007e24639e?auto=format&fit=crop&q=80&w=400');"></div>
+                <div class="service-info">
+                    <h3>Maternity Care</h3>
+                    <p>Comprehensive prenatal, delivery, and postnatal services for mother and child.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="doctors">
+        <div class="section-title">
+            <h2>Our Specialists</h2>
+            <p>Meet our team of world-class healthcare professionals.</p>
+        </div>
+        <div class="doctors-grid">
+            <div class="doctor-card">
+                <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&q=80&w=400" alt="Dr. Kunle" class="doctor-img">
+                <div class="doctor-info">
+                    <h4>Dr. Kunle Adebayo</h4>
+                    <span>Chief Medical Director</span>
+                </div>
+            </div>
+            <div class="doctor-card">
+                <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&q=80&w=400" alt="Dr. Sarah" class="doctor-img">
+                <div class="doctor-info">
+                    <h4>Dr. Sarah Okoh</h4>
+                    <span>Lead Pediatrician</span>
+                </div>
+            </div>
+            <div class="doctor-card">
+                <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=400" alt="Dr. James" class="doctor-img">
+                <div class="doctor-info">
+                    <h4>Dr. James Wilson</h4>
+                    <span>Consultant Surgeon</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="appointments" class="appointment-section">
+        <div class="appointment-container">
+            <div>
+                <div class="section-title" style="text-align: left; margin-bottom: 30px;">
+                    <h2>Book Your Visit</h2>
+                </div>
+                <p>Skip the queue by scheduling your appointment online. Our patient coordinator will contact you within 30 minutes to confirm your slot.</p>
+                <div style="margin-top: 30px;">
+                    <div class="resource-item" style="margin-bottom: 15px;">
+                        <i class="fas fa-calendar-check"></i>
+                        <div>
+                            <h4>Flexible Scheduling</h4>
+                            <p>Choose dates that work for you.</p>
+                        </div>
+                    </div>
+                    <div class="resource-item">
+                        <i class="fas fa-file-medical"></i>
+                        <div>
+                            <h4>Digital Records</h4>
+                            <p>Access your results online.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="booking-form">
+                <form onsubmit="handleForm(event)">
+                    <div class="form-group">
+                        <label>Patient Full Name</label>
+                        <input type="text" placeholder="Enter your name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Select Department</label>
+                        <select required>
+                            <option value="">Choose Specialty...</option>
+                            <option>General Medicine</option>
+                            <option>Pediatrics</option>
+                            <option>Surgery</option>
+                            <option>Obstetrics & Gynecology</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Preferred Date</label>
+                        <input type="date" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Confirm Booking Request</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section id="resources">
+        <div class="section-title">
+            <h2>Patient Resources</h2>
+            <p>Everything you need for a smooth healthcare journey.</p>
+        </div>
+        <div class="resource-grid">
+            <a href="#" class="resource-item">
+                <i class="fas fa-download"></i>
+                <span>Patient Intake Form (PDF)</span>
+            </a>
+            <a href="#" class="resource-item">
+                <i class="fas fa-shield-alt"></i>
+                <span>Insurance Partners</span>
+            </a>
+            <a href="#" class="resource-item">
+                <i class="fas fa-book-medical"></i>
+                <span>Health Tips Blog</span>
+            </a>
+        </div>
+    </section>
+
+    <section id="gallery">
+        <div class="section-title">
+            <h2>Our Facilities</h2>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=400" alt="Gallery"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&q=80&w=400" alt="Gallery"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&q=80&w=400" alt="Gallery"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1538108149393-fdfd81895907?auto=format&fit=crop&q=80&w=400" alt="Gallery"></div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="about-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px;">
+            <div class="contact-info">
+                <div class="section-title" style="text-align: left;">
+                    <h2>Get In Touch</h2>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 20px;">
+                    <p><i class="fas fa-map-marker-alt" style="color: var(--primary); margin-right: 15px;"></i> 25 Health Avenue, GRA, Akure, Ondo State</p>
+                    <p><i class="fas fa-phone" style="color: var(--primary); margin-right: 15px;"></i> +234 706 123 4567</p>
+                    <p><i class="fas fa-envelope" style="color: var(--primary); margin-right: 15px;"></i> contact@lifecareclinic.ng</p>
+                </div>
+                <div style="margin-top: 40px;">
+                    <h4>Office Hours</h4>
+                    <p>Mon - Fri: 8:00 AM - 6:00 PM</p>
+                    <p>Sat - Sun: 10:00 AM - 4:00 PM</p>
+                    <p><em>Emergency: 24 Hours</em></p>
+                </div>
+            </div>
+            <div class="contact-map">
+                <div style="width:100%; height: 350px; background: #eee; border-radius: 20px; display: flex; align-items: center; justify-content: center;">
+                    <p>Interactive Map Integration</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h3 style="color: white; margin-bottom: 20px;">LifeCare</h3>
+                <p>Redefining healthcare through innovation, compassion, and excellence in the heart of Nigeria.</p>
+                <div style="display: flex; gap: 15px; margin-top: 20px;">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="#">Diagnostics</a></li>
+                    <li><a href="#">Surgical Unit</a></li>
+                    <li><a href="#">Emergency</a></li>
+                    <li><a href="#">Pharmacy</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#doctors">Our Doctors</a></li>
+                    <li><a href="#resources">Resources</a></li>
+                    <li><a href="#appointments">Booking</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Newsletter</h4>
+                <p>Get health tips and news.</p>
+                <form style="margin-top: 15px; display: flex;">
+                    <input type="email" placeholder="Email" style="border-radius: 8px 0 0 8px;">
+                    <button class="btn btn-primary" style="padding: 10px; border-radius: 0 8px 8px 0;">Go</button>
+                </form>
+            </div>
+        </div>
+        <div style="text-align: center; border-top: 1px solid #333; padding-top: 30px; font-size: 0.9rem; color: #777;">
+            <p>&copy; 2025 LifeCare Medical Centre. Quality Care, Every Time.</p>
+        </div>
+    </footer>
+
+    <div class="widgets">
+        <a href="https://wa.me/2347061234567" class="widget w-whatsapp" title="WhatsApp Us"><i class="fab fa-whatsapp"></i></a>
+        <a href="tel:+2347061234567" class="widget w-phone" title="Call Us"><i class="fas fa-phone"></i></a>
+    </div>
+
+    <script>
+        // Header Scroll Effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile Menu Toggle logic
+        function toggleMenu() {
+            const nav = document.getElementById('navLinks');
+            const icon = document.getElementById('burgerIcon');
+            nav.classList.toggle('active');
+            
+            if(nav.classList.contains('active')) {
+                icon.classList.replace('fa-bars', 'fa-times');
+            } else {
+                icon.classList.replace('fa-times', 'fa-bars');
+            }
+        }
+
+        // Close menu on link click (Mobile)
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('navLinks').classList.remove('active');
+                document.getElementById('burgerIcon').classList.replace('fa-times', 'fa-bars');
+            });
+        });
+
+        // Form Handling
+        function handleForm(e) {
+            e.preventDefault();
+            alert('Your request has been received. Our team will contact you shortly to confirm your appointment.');
+            e.target.reset();
+        }
+    </script>
+</body>
+</html>

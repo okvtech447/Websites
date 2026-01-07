@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RoyalTouch Events | Premium Event Planning in Nigeria</title>
+    <meta name="description" content="Expert event planning and management services in Oyo, Lagos, and Ogun. Making your royal dreams a reality.">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #6F1D1B;
+            --primary-light: #8b2d2a;
+            --secondary: #FFF1E6;
+            --accent: #D4AF37;
+            --text-dark: #2D2D2D;
+            --text-muted: #666;
+            --white: #ffffff;
+            --section-padding: 100px;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        /* --- RESET & BASE --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.7;
+            color: var(--text-dark);
+            background-color: var(--white);
+            overflow-x: hidden;
+        }
+
+        /* --- REUSABLE COMPONENTS --- */
+        .container {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 0 25px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            cursor: pointer;
+            border: 2px solid transparent;
+            text-align: center;
+        }
+
+        .btn-primary { background: var(--primary); color: var(--white); }
+        .btn-primary:hover { background: transparent; border-color: var(--primary); color: var(--primary); transform: translateY(-3px); }
+        
+        .btn-accent { background: var(--accent); color: var(--white); }
+        .btn-accent:hover { background: var(--primary); transform: translateY(-3px); }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 60px;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        section { padding: var(--section-padding) 0; }
+
+        /* --- HEADER & NAV --- */
+        header {
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .top-bar {
+            background: var(--primary);
+            color: var(--white);
+            padding: 8px 0;
+            font-size: 0.8rem;
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            transition: 0.3s;
+        }
+
+        .top-bar.hidden { margin-top: -40px; }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            transition: var(--transition);
+        }
+
+        .logo img { height: 45px; transition: var(--transition); }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 35px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after { width: 100%; }
+
+        .hamburger { 
+            display: none; 
+            cursor: pointer; 
+            font-size: 1.5rem; 
+            color: var(--primary);
+        }
+
+        /* --- HERO --- */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                        url('https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            color: var(--white);
+            padding-top: 80px;
+        }
+
+        .hero-content { max-width: 800px; }
+
+        .hero-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            line-height: 1.1;
+            margin-bottom: 25px;
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 35px;
+            opacity: 0.9;
+        }
+
+        .hero-btns { display: flex; gap: 20px; }
+
+        /* --- ABOUT --- */
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 80px;
+            align-items: center;
+        }
+
+        .about-img { position: relative; }
+        .about-img img {
+            width: 100%;
+            border-radius: 4px;
+            box-shadow: var(--shadow);
+        }
+        .about-img::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            width: 100%;
+            height: 100%;
+            border: 2px solid var(--accent);
+            z-index: -1;
+            border-radius: 4px;
+        }
+
+        /* --- NEW: PACKAGES SECTION --- */
+        .packages { background: #fdfaf7; }
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .price-card {
+            background: var(--white);
+            padding: 50px 40px;
+            border-radius: 15px;
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid #eee;
+        }
+
+        .price-card.featured {
+            border: 2px solid var(--accent);
+            transform: scale(1.05);
+            box-shadow: var(--shadow);
+        }
+
+        .price-card h3 { font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 15px; }
+        .price-value { font-size: 2.5rem; font-weight: 700; color: var(--primary); margin-bottom: 25px; }
+        .price-value span { font-size: 1rem; color: var(--text-muted); }
+
+        .price-features { list-style: none; margin-bottom: 30px; text-align: left; }
+        .price-features li { margin-bottom: 12px; font-size: 0.95rem; }
+        .price-features li i { color: var(--accent); margin-right: 10px; }
+
+        /* --- SERVICES --- */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            position: relative;
+            height: 450px;
+            border-radius: 15px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .service-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .service-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(111, 29, 27, 0.95), transparent);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 40px;
+            color: var(--white);
+            transform: translateY(20px);
+            transition: var(--transition);
+        }
+
+        .service-card:hover img { transform: scale(1.1); }
+        .service-card:hover .service-overlay { transform: translateY(0); }
+
+        /* --- NEW: TEAM SECTION --- */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+        .team-member { text-align: center; }
+        .team-member img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            filter: grayscale(100%);
+            transition: var(--transition);
+        }
+        .team-member:hover img { filter: grayscale(0%); }
+
+        /* --- TESTIMONIALS --- */
+        .testimonials { background: var(--primary); color: var(--white); overflow: hidden; }
+        .testimonial-slider {
+            display: flex;
+            gap: 30px;
+            padding: 20px 0;
+            animation: slideScroll 40s linear infinite;
+        }
+
+        .testimonial-card {
+            min-width: 400px;
+            background: rgba(255,255,255,0.05);
+            padding: 40px;
+            border-radius: 15px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        /* --- CONTACT --- */
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 80px;
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .contact-info {
+            background: var(--secondary);
+            padding: 60px;
+            border-radius: 15px;
+        }
+
+        .contact-form { padding: 20px 0; }
+        .form-group { margin-bottom: 20px; }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 16px;
+            border: 1px solid #eee;
+            background: #f9f9f9;
+            border-radius: 8px;
+            font-family: inherit;
+            transition: var(--transition);
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            background: var(--white);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: #111;
+            color: #999;
+            padding: 80px 0 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 50px;
+            margin-bottom: 60px;
+        }
+
+        .footer-col h4 { color: var(--white); margin-bottom: 25px; font-family: 'Playfair Display', serif; }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 12px; }
+        .footer-col a { color: #999; text-decoration: none; transition: 0.3s; }
+        .footer-col a:hover { color: var(--accent); padding-left: 5px; }
+
+        /* --- WIDGETS --- */
+        .widgets {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 1000;
+        }
+
+        .widget-btn {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            transition: var(--transition);
+        }
+
+        .wa-widget { background: #25D366; }
+        .call-widget { background: var(--primary); }
+        .widget-btn:hover { transform: scale(1.1) rotate(10deg); }
+
+        /* --- ANIMATIONS --- */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideScroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+
+        /* --- MOBILE RESPONSIVENESS --- */
+        @media (max-width: 992px) {
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+            .contact-wrapper { grid-template-columns: 1fr; gap: 40px; }
+            .hero-content { text-align: center; }
+            .hero-btns { justify-content: center; }
+        }
+
+        @media (max-width: 768px) {
+            :root { --section-padding: 70px; }
+            
+            .hamburger { display: block; }
+            
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                height: 100vh;
+                width: 80%;
+                background: var(--white);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                transition: 0.5s;
+                box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+            }
+
+            .nav-links.active { right: 0; }
+
+            .top-bar { display: none; }
+            .about-grid { gap: 40px; }
+            .pricing-grid { padding: 0 10px; }
+            .price-card.featured { transform: scale(1); }
+            .testimonial-card { min-width: 300px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header id="mainHeader">
+        <div class="top-bar" id="topBar">
+            <span><i class="fas fa-phone"></i> +234 814 556 7788</span>
+            <span><i class="fas fa-envelope"></i> bookings@royaltouchevents.ng</span>
+        </div>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">
+                    <img src="https://via.placeholder.com/180x60?text=RoyalTouch" alt="RoyalTouch Logo">
+                </a>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#pricing">Packages</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <div class="hamburger" id="menuBtn">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Where Your Royal Dreams Come To Life.</h1>
+                <p>Nigeria's premier event management firm specializing in high-end logistics and breathtaking decor for elite celebrations.</p>
+                <div class="hero-btns">
+                    <a href="#contact" class="btn btn-accent">Plan My Event</a>
+                    <a href="#portfolio" class="btn btn-primary">View Gallery</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-img">
+                    <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=800&q=80" alt="RoyalTouch Planning">
+                </div>
+                <div class="about-text">
+                    <h2 class="section-title">A Tradition of Excellence</h2>
+                    <p>For over a decade, RoyalTouch Events has been the silent force behind Nigeria’s most prestigious gatherings. We believe that every event is a story waiting to be told.</p>
+                    <br>
+                    <p>Our mission is simple: <strong>Exclusivity, Precision, and Luxury.</strong> We don't just plan events; we curate experiences that linger in the hearts of your guests forever.</p>
+                    <br>
+                    <a href="#contact" class="btn btn-primary">Meet Our Team</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Our Signature Services</h2>
+                <p>Tailored solutions for every milestone, executed with a touch of royalty.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=600&q=80" alt="Weddings">
+                    <div class="service-overlay">
+                        <h3>Royal Weddings</h3>
+                        <p>From traditional engagements to white weddings.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <img src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&w=600&q=80" alt="Corporate">
+                    <div class="service-overlay">
+                        <h3>Corporate Galas</h3>
+                        <p>AGMs, product launches, and award nights.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=600&q=80" alt="Social">
+                    <div class="service-overlay">
+                        <h3>Private Parties</h3>
+                        <p>Milestone birthdays and intimate anniversaries.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing" class="packages">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Event Packages</h2>
+                <p>Choose the level of support that fits your needs.</p>
+            </div>
+            <div class="pricing-grid">
+                <div class="price-card">
+                    <h3>Day-Of Coordination</h3>
+                    <div class="price-value">Custom<span>/Event</span></div>
+                    <ul class="price-features">
+                        <li><i class="fas fa-check"></i> On-site management</li>
+                        <li><i class="fas fa-check"></i> Vendor liaison</li>
+                        <li><i class="fas fa-check"></i> Timeline execution</li>
+                        <li><i class="fas fa-check"></i> 8 hours coverage</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-primary">Select Plan</a>
+                </div>
+                <div class="price-card featured">
+                    <h3>Partial Planning</h3>
+                    <div class="price-value">Popular<span>/Choice</span></div>
+                    <ul class="price-features">
+                        <li><i class="fas fa-check"></i> Everything in Coordination</li>
+                        <li><i class="fas fa-check"></i> Budget management</li>
+                        <li><i class="fas fa-check"></i> Decor consultation</li>
+                        <li><i class="fas fa-check"></i> Guest list tracking</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-accent">Select Plan</a>
+                </div>
+                <div class="price-card">
+                    <h3>Full Royal Experience</h3>
+                    <div class="price-value">Premium<span>/Full</span></div>
+                    <ul class="price-features">
+                        <li><i class="fas fa-check"></i> End-to-end planning</li>
+                        <li><i class="fas fa-check"></i> International vendor sourcing</li>
+                        <li><i class="fas fa-check"></i> Concept & Branding</li>
+                        <li><i class="fas fa-check"></i> VIP Concierge</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-primary">Select Plan</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Recent Works</h2>
+                <p>A glimpse into the celebrations we've brought to life.</p>
+            </div>
+            <div class="services-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+                <div class="service-card" style="height: 300px;">
+                    <img src="https://images.unsplash.com/photo-1478147427282-58a87a120781?auto=format&fit=crop&w=400&q=80" alt="Work 1">
+                </div>
+                <div class="service-card" style="height: 300px;">
+                    <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=400&q=80" alt="Work 2">
+                </div>
+                <div class="service-card" style="height: 300px;">
+                    <img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=400&q=80" alt="Work 3">
+                </div>
+                <div class="service-card" style="height: 300px;">
+                    <img src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&w=400&q=80" alt="Work 4">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title" style="color: white; text-align: center;">Words From Our Clients</h2>
+            <div class="testimonial-slider">
+                <div class="testimonial-card">
+                    <p>"RoyalTouch handled our wedding in Lagos perfectly. The decor was breathtaking!"</p>
+                    <div style="color: var(--accent); margin-top: 20px;">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <strong style="display: block; margin-top: 10px;">- Mrs. Adeyemi</strong>
+                </div>
+                <div class="testimonial-card">
+                    <p>"Professional, timely, and very creative. They made our corporate launch a huge success."</p>
+                    <div style="color: var(--accent); margin-top: 20px;">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <strong style="display: block; margin-top: 10px;">- GTBank Project Lead</strong>
+                </div>
+                <div class="testimonial-card">
+                    <p>"I didn't have to worry about a single thing. Truly the best in the business."</p>
+                    <div style="color: var(--accent); margin-top: 20px;">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <strong style="display: block; margin-top: 10px;">- Chief Okon</strong>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <h2 class="section-title" style="text-align: left;">Let's Connect</h2>
+                    <p>Ready to start planning? Reach out and let's make it happen.</p>
+                    <div style="margin-top: 40px;">
+                        <p style="margin-bottom: 20px;"><i class="fas fa-map-marker-alt" style="color: var(--accent); margin-right: 15px;"></i> 5 Celebration Avenue, Ibadan</p>
+                        <p style="margin-bottom: 20px;"><i class="fas fa-phone" style="color: var(--accent); margin-right: 15px;"></i> +234 814 556 7788</p>
+                        <p><i class="fas fa-envelope" style="color: var(--accent); margin-right: 15px;"></i> bookings@royaltouchevents.ng</p>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form onsubmit="handleForm(event)">
+                        <div class="form-group">
+                            <input type="text" placeholder="Full Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Email Address" required>
+                        </div>
+                        <div class="form-group">
+                            <select required>
+                                <option value="">Event Type</option>
+                                <option>Wedding</option>
+                                <option>Corporate</option>
+                                <option>Social</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <textarea rows="5" placeholder="Tell us more about your vision..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Send Request</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4 style="font-size: 1.5rem;">RoyalTouch Events</h4>
+                    <p>Creating world-class experiences for sophisticated clients across West Africa.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Navigate</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#services">Services</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Expertise</h4>
+                    <ul>
+                        <li>Decor Design</li>
+                        <li>Logistics</li>
+                        <li>Vendor Sourcing</li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Social</h4>
+                    <div style="display: flex; gap: 20px; font-size: 1.2rem;">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align: center; border-top: 1px solid #222; padding-top: 30px; font-size: 0.8rem;">
+                <p>&copy; 2025 RoyalTouch Events. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="widgets">
+        <a href="https://wa.me/2348145567788" class="widget-btn wa-widget" title="WhatsApp Us">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+        <a href="tel:+2348145567788" class="widget-btn call-widget" title="Call Us">
+            <i class="fas fa-phone"></i>
+        </a>
+    </div>
+
+    <script>
+        // Header Scroll Effect
+        const header = document.getElementById('mainHeader');
+        const topBar = document.getElementById('topBar');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+                topBar.classList.add('hidden');
+            } else {
+                header.classList.remove('scrolled');
+                topBar.classList.remove('hidden');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('menuBtn');
+        const navLinks = document.getElementById('navLinks');
+
+        menuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const icon = menuBtn.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
+
+        // Close menu on link click
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                menuBtn.querySelector('i').classList.add('fa-bars');
+            });
+        });
+
+        // Form Handling
+        function handleForm(e) {
+            e.preventDefault();
+            alert("Thank you! Your request has been received. A RoyalTouch consultant will reach out to you within 24 hours.");
+            e.target.reset();
+        }
+    </script>
+</body>
+</html>

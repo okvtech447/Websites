@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Christ Apostolic Church – ORISUN AYO | Hope & Salvation</title>
+    <meta name="description" content="Welcome to CAC Orisun Ayo. Join us for worship in Ado Ekiti, Ibadan, and Online. Experience spiritual growth and community.">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #1E3A8A;
+            --primary-dark: #162d6d;
+            --secondary: #F8FAFC;
+            --accent: #EAB308;
+            --text-dark: #1E293B;
+            --text-light: #64748B;
+            --white: #FFFFFF;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        /* Base Resets */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.7;
+            color: var(--text-dark);
+            background-color: var(--white);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            line-height: 1.2;
+        }
+
+        ul { list-style: none; }
+        a { text-decoration: none; color: inherit; transition: var(--transition); }
+        img { max-width: 100%; height: auto; display: block; }
+
+        .container {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Reusable Components */
+        .section-padding { padding: 100px 0; }
+        
+        .section-header { 
+            text-align: center; 
+            margin-bottom: 60px; 
+            max-width: 700px; 
+            margin-inline: auto;
+        }
+        .section-header h2 { font-size: 2.8rem; color: var(--primary); margin-bottom: 15px; }
+        .section-header .divider { height: 4px; width: 60px; background: var(--accent); margin: 0 auto 20px; border-radius: 2px; }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 32px;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            gap: 10px;
+        }
+
+        .btn-primary { background: var(--primary); color: var(--white); }
+        .btn-primary:hover { background: var(--primary-dark); transform: translateY(-3px); box-shadow: 0 10px 15px -3px rgba(30, 58, 138, 0.3); }
+        
+        .btn-accent { background: var(--accent); color: var(--primary); }
+        .btn-accent:hover { transform: translateY(-3px); box-shadow: 0 10px 15px -3px rgba(234, 179, 8, 0.3); }
+
+        .card {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        .card:hover { transform: translateY(-10px); }
+
+        /* Top Bar */
+        .top-bar {
+            background: var(--primary);
+            color: var(--white);
+            padding: 10px 0;
+            font-size: 0.85rem;
+        }
+        .top-bar-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Header & Nav */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo img { height: 55px; width: auto; }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after { width: 100%; }
+        .nav-links a:hover { color: var(--primary); }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        #hero {
+            height: 90vh;
+            background: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.75)), 
+                        url('https://images.unsplash.com/photo-1438232992991-995b7058bbb3?auto=format&fit=crop&q=80&w=1600') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            color: var(--white);
+            text-align: center;
+        }
+
+        .hero-content h1 { 
+            font-size: clamp(2.5rem, 5vw, 4.5rem); 
+            margin-bottom: 25px; 
+            font-weight: 800;
+        }
+        .hero-content p { 
+            font-size: clamp(1.1rem, 2vw, 1.4rem); 
+            margin-bottom: 40px; 
+            max-width: 800px; 
+            margin-inline: auto;
+            opacity: 0.9;
+        }
+        .hero-btns { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+
+        /* About & History (Updated) */
+        #about { background: var(--white); }
+        .about-grid { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 80px; 
+            align-items: center; 
+        }
+        .about-image { position: relative; }
+        .about-image img { 
+            width: 100%; 
+            border-radius: 20px; 
+            box-shadow: 30px 30px 0 var(--secondary);
+        }
+        .about-image::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            width: 100px;
+            height: 100px;
+            background: var(--accent);
+            border-radius: 50%;
+            z-index: -1;
+        }
+
+        /* Leadership Section (NEW) */
+        #leadership { background: var(--secondary); }
+        .leader-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        .leader-card {
+            text-align: center;
+            background: var(--white);
+            padding: 40px 20px;
+            border-radius: 15px;
+        }
+        .leader-card img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            object-fit: cover;
+            border: 5px solid var(--secondary);
+        }
+
+        /* Ministries Section (NEW) */
+        #ministries { background: var(--white); }
+        .ministry-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        .ministry-card {
+            position: relative;
+            height: 300px;
+            border-radius: 15px;
+            overflow: hidden;
+            color: white;
+        }
+        .ministry-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 30px;
+            transition: var(--transition);
+        }
+        .ministry-card:hover .ministry-overlay { padding-bottom: 40px; background: linear-gradient(to top, var(--primary), transparent); }
+
+        /* Sermons Section (NEW) */
+        #sermons { background: var(--primary); color: var(--white); }
+        .sermon-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .sermon-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 25px;
+            border-radius: 12px;
+        }
+        .play-btn {
+            width: 50px;
+            height: 50px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        /* Events Section (NEW) */
+        #events { background: var(--secondary); }
+        .event-list { display: flex; flex-direction: column; gap: 20px; }
+        .event-item {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            align-items: center;
+            background: var(--white);
+            padding: 25px;
+            border-radius: 12px;
+            gap: 30px;
+        }
+        .event-date {
+            background: var(--primary);
+            color: var(--white);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            min-width: 80px;
+        }
+        .event-date span { display: block; font-size: 1.5rem; font-weight: 800; }
+
+        /* Giving Section (NEW) */
+        #giving { 
+            background: linear-gradient(rgba(30, 58, 138, 0.9), rgba(30, 58, 138, 0.9)), 
+                        url('https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?auto=format&fit=crop&q=80&w=1200') center/cover;
+            color: white;
+            text-align: center;
+        }
+
+        /* Testimonials */
+        #testimonials { background: var(--white); padding: 100px 0; }
+        .testimonial-container { overflow: hidden; position: relative; }
+        .testimonial-slider { display: flex; transition: var(--transition); }
+        .testimonial-card { 
+            min-width: 100%; 
+            padding: 40px; 
+            text-align: center;
+        }
+        .testimonial-card p { font-size: 1.2rem; font-style: italic; margin-bottom: 25px; }
+        .testimonial-card img { width: 90px; height: 90px; border-radius: 50%; margin-bottom: 20px; border: 4px solid var(--accent); }
+
+        /* Footer */
+        footer { background: #0f172a; color: var(--white); padding: 80px 0 30px; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 50px; }
+        .footer-col h4 { margin-bottom: 30px; color: var(--accent); font-size: 1.4rem; }
+        .footer-col p { opacity: 0.8; margin-bottom: 15px; }
+        .footer-links li { margin-bottom: 12px; }
+        .footer-links a:hover { color: var(--accent); padding-left: 5px; }
+        
+        /* Floating Widget */
+        .widget-stack { position: fixed; bottom: 30px; right: 30px; z-index: 1001; display: flex; flex-direction: column; gap: 15px; }
+        .widget-item { width: 55px; height: 55px; border-radius: 50%; display: grid; place-items: center; color: white; box-shadow: 0 8px 25px rgba(0,0,0,0.2); transition: var(--transition); }
+        .whatsapp-w { background: #25D366; }
+        .phone-w { background: var(--primary); }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 992px) {
+            .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 50px; }
+            .section-header h2 { font-size: 2.2rem; }
+        }
+
+        @media (max-width: 768px) {
+            .top-bar { display: none; }
+            .nav-links { 
+                position: fixed; top: 80px; left: -100%; width: 100%; height: calc(100vh - 80px); 
+                background: var(--white); flex-direction: column; padding: 40px; text-align: center; 
+                transition: 0.4s ease-in-out; box-shadow: 0 10px 20px rgba(0,0,0,0.1); 
+            }
+            .nav-links.active { left: 0; }
+            .menu-toggle { display: block; }
+            .event-item { grid-template-columns: 1fr; text-align: center; }
+            .event-date { margin: 0 auto; }
+            .hero-content h1 { font-size: 2.4rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <div class="container top-bar-content">
+            <div class="top-info">
+                <span><i class="fas fa-calendar-alt"></i> Sunday Service: 8:00 AM</span>
+            </div>
+            <div class="top-contact">
+                <span style="margin-right: 20px;"><i class="fas fa-phone"></i> +234 806 774 5512</span>
+                <span><i class="fas fa-envelope"></i> info@caclivinghope.org</span>
+            </div>
+        </div>
+    </div>
+
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">
+                    <img src="https://via.placeholder.com/200x80?text=CAC+ORISUN+AYO" alt="CAC Orisun Ayo">
+                </a>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#hero">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#ministries">Ministries</a></li>
+                    <li><a href="#sermons">Sermons</a></li>
+                    <li><a href="#events">Events</a></li>
+                    <li><a href="#giving">Give</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <div class="menu-toggle" id="mobileMenu"><i class="fas fa-bars"></i></div>
+            </nav>
+        </div>
+    </header>
+
+    <section id="hero">
+        <div class="container hero-content">
+            <h1>Where Hope Finds a Home</h1>
+            <p>Join a community rooted in faith, powered by prayer, and dedicated to seeing lives transformed by the power of God.</p>
+            <div class="hero-btns">
+                <a href="#events" class="btn btn-accent">Upcoming Events</a>
+                <a href="#contact" class="btn btn-primary">Plan Your Visit</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="section-padding">
+        <div class="container about-grid">
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1544427920-c49ccfb85579?auto=format&fit=crop&q=80&w=800" alt="Church Community">
+            </div>
+            <div class="about-text">
+                <div class="section-header" style="text-align: left; margin-left: 0;">
+                    <h2>Our Story & Vision</h2>
+                    <div class="divider" style="margin-left: 0;"></div>
+                </div>
+                <p>Founded on the apostolic mandate, CAC Orisun Ayo is a vibrant Christian organization dedicated to the restoration of hope. We believe in the transformative power of the Holy Spirit and the timeless truth of the Bible.</p>
+                <p style="margin-top: 20px;"><strong>Our Mission:</strong> To raise a generation of believers who are spiritually vibrant, socially relevant, and kingdom-minded.</p>
+                <div style="margin-top: 35px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                    <div><i class="fas fa-check-circle color-accent" style="color:var(--accent)"></i> Biblical Teaching</div>
+                    <div><i class="fas fa-check-circle color-accent" style="color:var(--accent)"></i> Earnest Prayer</div>
+                    <div><i class="fas fa-check-circle color-accent" style="color:var(--accent)"></i> Loving Community</div>
+                    <div><i class="fas fa-check-circle color-accent" style="color:var(--accent)"></i> Global Outreach</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="leadership" class="section-padding">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Leadership</h2>
+                <div class="divider"></div>
+                <p>Guided by spiritual wisdom and a heart for the people.</p>
+            </div>
+            <div class="leader-grid">
+                <div class="leader-card">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=300" alt="Pastor">
+                    <h3>Pastor John Doe</h3>
+                    <p>Senior Pastor</p>
+                </div>
+                <div class="leader-card">
+                    <img src="https://images.unsplash.com/photo-1554151228-14d9def656e4?auto=format&fit=crop&q=80&w=300" alt="Pastor">
+                    <h3>Pastor (Mrs) Doe</h3>
+                    <p>Co-Pastor / Women Ministry</p>
+                </div>
+                <div class="leader-card">
+                    <img src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&q=80&w=300" alt="Pastor">
+                    <h3>Evang. James Smith</h3>
+                    <p>Associate Pastor</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="ministries" class="section-padding">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Ministries</h2>
+                <div class="divider"></div>
+                <p>Get involved and grow in a specialized community.</p>
+            </div>
+            <div class="ministry-grid">
+                <div class="ministry-card" style="background: url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=600') center/cover;">
+                    <div class="ministry-overlay">
+                        <h3>Youth Ministry</h3>
+                        <p>Empowering the next generation for Christ.</p>
+                    </div>
+                </div>
+                <div class="ministry-card" style="background: url('https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&q=80&w=600') center/cover;">
+                    <div class="ministry-overlay">
+                        <h3>Worship Department</h3>
+                        <p>Leading the congregation into God's presence.</p>
+                    </div>
+                </div>
+                <div class="ministry-card" style="background: url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&q=80&w=600') center/cover;">
+                    <div class="ministry-overlay">
+                        <h3>Outreach & Missions</h3>
+                        <p>Taking the gospel to the streets and nations.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="sermons" class="section-padding">
+        <div class="container">
+            <div class="section-header">
+                <h2 style="color: white;">Recent Sermons</h2>
+                <div class="divider"></div>
+                <p style="color: rgba(255,255,255,0.8);">Listen to life-changing words anytime, anywhere.</p>
+            </div>
+            <div class="sermon-grid">
+                <div class="sermon-card">
+                    <div class="play-btn"><i class="fas fa-play"></i></div>
+                    <h3>The Power of Persistence</h3>
+                    <p>Speaker: Pastor John Doe</p>
+                    <small>Date: Oct 24, 2025</small>
+                </div>
+                <div class="sermon-card">
+                    <div class="play-btn"><i class="fas fa-video"></i></div>
+                    <h3>Walking in Divine Favor</h3>
+                    <p>Speaker: Evang. James Smith</p>
+                    <small>Date: Oct 17, 2025</small>
+                </div>
+                <div class="sermon-card">
+                    <div class="play-btn"><i class="fas fa-play"></i></div>
+                    <h3>Understanding Your Purpose</h3>
+                    <p>Speaker: Pastor John Doe</p>
+                    <small>Date: Oct 10, 2025</small>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 50px;">
+                <a href="#" class="btn btn-accent">View Sermon Archive</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="events" class="section-padding">
+        <div class="container">
+            <div class="section-header">
+                <h2>Upcoming Events</h2>
+                <div class="divider"></div>
+            </div>
+            <div class="event-list">
+                <div class="event-item card">
+                    <div class="event-date">
+                        <span>12</span> NOV
+                    </div>
+                    <div class="event-info">
+                        <h3>Annual Convention 2025</h3>
+                        <p><i class="fas fa-clock"></i> 9:00 AM | <i class="fas fa-map-marker-alt"></i> Main Auditorium</p>
+                    </div>
+                    <a href="#contact" class="btn btn-primary">Remind Me</a>
+                </div>
+                <div class="event-item card">
+                    <div class="event-date">
+                        <span>28</span> NOV
+                    </div>
+                    <div class="event-info">
+                        <h3>Night of 1000 Praises</h3>
+                        <p><i class="fas fa-clock"></i> 10:00 PM | <i class="fas fa-map-marker-alt"></i> Church Grounds</p>
+                    </div>
+                    <a href="#contact" class="btn btn-primary">Join Event</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="giving" class="section-padding">
+        <div class="container">
+            <div class="section-header">
+                <h2 style="color: white;">Support The Ministry</h2>
+                <div class="divider"></div>
+                <p>Your generosity helps us spread the gospel and support the community.</p>
+            </div>
+            <div style="max-width: 600px; margin: 0 auto; background: rgba(255,255,255,0.1); padding: 40px; border-radius: 15px; backdrop-filter: blur(5px);">
+                <h3>Online Giving</h3>
+                <p style="margin-bottom: 25px;">Bank: Zenith Bank <br> Account: 1234567890 <br> Name: CAC Orisun Ayo</p>
+                <a href="#" class="btn btn-accent">Give Online Now</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section-padding">
+        <div class="container contact-grid">
+            <div>
+                <div class="section-header" style="text-align: left; margin-left: 0;">
+                    <h2>Get In Touch</h2>
+                    <div class="divider" style="margin-left: 0;"></div>
+                </div>
+                <p style="margin-bottom: 30px;">Do you have a prayer request or want to learn more about us? Our team is ready to hear from you.</p>
+                <div class="contact-info">
+                    <p style="margin-bottom: 15px;"><i class="fas fa-map-marker-alt" style="color:var(--accent); width: 25px;"></i> Moferere Ado Ekiti, Ekiti State.</p>
+                    <p style="margin-bottom: 15px;"><i class="fas fa-phone" style="color:var(--accent); width: 25px;"></i> +234 806 774 5512</p>
+                    <p style="margin-bottom: 15px;"><i class="fas fa-envelope" style="color:var(--accent); width: 25px;"></i> info@caclivinghope.org</p>
+                </div>
+                <div class="social-links" style="display: flex; gap: 15px; margin-top: 30px;">
+                    <a href="#" class="widget-item" style="background: #3b5998;"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="widget-item" style="background: #ff0000;"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="widget-item" style="background: #e1306c;"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <form id="contactForm" class="card">
+                <input type="text" id="name" placeholder="Full Name" required>
+                <input type="email" id="email" placeholder="Email Address" required>
+                <select id="subject" style="width: 100%; padding: 12px; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 5px;">
+                    <option value="">Select Purpose</option>
+                    <option value="prayer">Prayer Request</option>
+                    <option value="counseling">Counseling</option>
+                    <option value="visit">Planning a Visit</option>
+                </select>
+                <textarea id="message" rows="5" placeholder="How can we help you?" required style="width: 100%; padding: 12px; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 5px;"></textarea>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <h4>CAC Orisun Ayo</h4>
+                <p>A church dedicated to the preaching of the gospel of Jesus Christ and the empowerment of the saints.</p>
+                <p><i class="fas fa-clock"></i> Sunday: 8:00 AM - 11:30 AM</p>
+            </div>
+            <div class="footer-col">
+                <h4>Resources</h4>
+                <ul class="footer-links">
+                    <li><a href="#about">About Our Church</a></li>
+                    <li><a href="#ministries">Our Ministries</a></li>
+                    <li><a href="#sermons">Watch Sermons</a></li>
+                    <li><a href="#giving">Online Giving</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Locations</h4>
+                <ul class="footer-links">
+                    <li><i class="fas fa-map-marker-alt"></i> Ado Ekiti (HQ)</li>
+                    <li><i class="fas fa-map-marker-alt"></i> Ibadan Branch</li>
+                    <li><i class="fas fa-globe"></i> Online Church</li>
+                </ul>
+            </div>
+        </div>
+        <div class="container" style="text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 30px; margin-top: 50px;">
+            <p>&copy; 2025 <strong>Christ Apostolic Church – ORISUN AYO</strong>. Built for Hope.</p>
+        </div>
+    </footer>
+
+    <div class="widget-stack">
+        <a href="tel:+2348067745512" class="widget-item phone-w" title="Call Us"><i class="fas fa-phone"></i></a>
+        <a href="https://wa.me/2348067745512" class="widget-item whatsapp-w" title="WhatsApp Us"><i class="fab fa-whatsapp"></i></a>
+    </div>
+
+    <script>
+        // Smooth Mobile Menu Toggle
+        const mobileMenu = document.getElementById('mobileMenu');
+        const navLinks = document.getElementById('navLinks');
+        
+        mobileMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mobileMenu.querySelector('i').classList.toggle('fa-bars');
+            mobileMenu.querySelector('i').classList.toggle('fa-times');
+        });
+
+        // Auto-close menu on link click
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                mobileMenu.querySelector('i').classList.add('fa-bars');
+                mobileMenu.querySelector('i').classList.remove('fa-times');
+            });
+        });
+
+        // Simple Sermon Audio Mockup
+        document.querySelectorAll('.play-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                alert('Streaming will start shortly. Ensure you are connected to the internet.');
+            });
+        });
+
+        // Form Submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const btn = this.querySelector('button');
+            btn.innerText = 'Sending...';
+            setTimeout(() => {
+                alert('Your message has been received. God bless you!');
+                btn.innerText = 'Send Message';
+                this.reset();
+            }, 1500);
+        });
+    </script>
+</body>
+</html>
